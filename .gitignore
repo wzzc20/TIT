@@ -1,0 +1,22 @@
+# Latex workspace & outputs.
+/revisedpaper/*.pdf
+/resp-letter/*.pdf
+*.synctex.gz
+*.thm
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.out
+
+*.log
+*.mat
+
+.DS_Store
+.vscode/
+*.asv
+*.xdv
+
+
+
