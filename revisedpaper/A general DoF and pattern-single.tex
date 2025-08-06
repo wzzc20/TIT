@@ -280,7 +280,7 @@ From (\ref{eqn_G_in_wavenumber_form}) we can find that there are poles at $k^2 =
 
 As is shown in (\ref{eqn_dispersion_relation}), there are some physical restrictions that the electromagnetic fields should obey in wireless communication systems. These restrictions relate to time, frequency, space and wavenumber domain. All possible electromagnetic fields considering these restrictions span a Hilbert space whose dimension is the number of basis needed to express arbitrary field in the space. 
 
-Note that different from a discrete matrix, the dimension of a continuous Hilbert space may be infinite. However, in practical communication tasks, using infinite number of base functions, which corresponds to infinite electromganetic modes, is impossible and often unnecessary. The reason is that only a few base functions contribute a lot to the field reconstruction, while the remained base functions can be discarded with small loss of precision. We will give a mathematical definition of the DoF based on the above discussion and verify its correctness in the following sections of the paper. 
+Note that different from a discrete matrix, the dimension of a continuous Hilbert space may be infinite. However, in practical communication tasks, using infinite number of base functions, which corresponds to infinite electromganetic modes, is impossible and often unnecessary. The reason is that only a few base functions contribute a lot to the field reconstruction, while the remained base functions can be discarded with small loss of precision. We will give a mathematical definition of the DoF based on the above discussion and verify its rationale in the following sections of the paper. 
 }
 
 \begin{definition}
@@ -295,6 +295,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 \subsection{\color{red}DoF of electromagnetic fields considering channel condition}
 
 \begin{definition}
+	\label{def_cDoF}
 		(channel DoF) Let $\mathcal{H}_{\rm t}$ and $\mathcal{H}_{\rm r}$ be two Hilbert spaces and $P:\mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ be an operator. Let $\{g_i\}_{i=1}^{+\infty}$ and $\{f_i\}_{i=1}^{+\infty}$ be a set of orthogonal bases for $\mathcal{H}_{\rm t}$ and $\mathcal{H}_{\rm r}$ separately. Let $\{P_i\}_{i=1}^n: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ be a set of rank-1 operators. 
 		If for arbitrary $g \in \mathcal{H}_{\rm t}$ that satisfies $\left\| g \right\|=1$, there always exists a set of numbers $b_i$ that satisfies $\left\| Pg-\sum_{i=1}^{n} b_iP_ig  \right\| \leqslant \epsilon$. The minimum $n$ that satisfies the above conditions is the channel DoF of the operator $P: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ with error $\epsilon$, i.e., 
 		\begin{equation}
@@ -318,6 +319,8 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	\end{figure*}
 
 \subsection{\color{red}Relationship between functional DoF and channel DoF}
+
+\label{sec:Relationship_theorem}
 	
 	\begin{lemma}
 		Assume that $g$ is square-integrable on $\mathcal{A} \subset \mathbb{R}^n$, the kernel function of integral operator $P$ is square-integrable on $\mathcal{A}*\mathcal{B} \subset \mathbb{R}^{n+m}$.
@@ -338,6 +341,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	To intuitively show the definition of the functional DoF and channel DoF, we plot Fig. \ref{FDoFandCDoF} which includes the functional space of transmitted and received fields $\mathcal{H}_t$ and $\mathcal{H}_r$. It is shown that the functional DoF corresponds to the number of orthogonal base functions in the functional space needed to construct the space with required accuracy. Moreover, the channel DoF corresponds to the number of subchannels needed to project arbitrary function in $\mathcal{H}_t$ to a function in $\mathcal{H}_r$ with required accuracy. It is expected that the channel DoF is upper-bounded by the functional DoF of the fields at the transceivers. We provide the following theorem to rigorously prove their relationship. 
 	
 	\begin{theorem}
+		\label{theorem_1}
 		(The relationship between the functional DoF and the channel DoF) Let $\mathcal{H}_{\rm t}$ and $\mathcal{H}_{\rm r}$ be two Hilbert spaces and $P:\mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ be an operator. The functional DoF of $\mathcal{H}_{\rm t}$ with error $\epsilon_1$ is $N_1$. The functional DoF of $\mathcal{H}_{\rm r}$ with error $\epsilon_2$ is $N_2$. Then the channel DoF of the operator $P: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ with error $\left\| P \right\| \epsilon_1 + \left\|  P \right\| (1+\epsilon_1) \epsilon_2$ is at most ${\rm max}\{N_1,N_2\}$, i.e.,
 		\begin{equation}
 			\begin{aligned}
@@ -383,7 +387,26 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 		Through {\bf Theorem 2} we provide the relationship between functional DoF and channel DoF, showing that the channel DoF is upper bounded by the functional DoF at the transceivers. Here it is worth noting that the bound is a weak bound while a tight bound related to ${\rm min}\{N_1,N_2\}$ is expected inspired by classical discrete MIMO theory, which remains for further works.
 	\end{remark}
 
-	{\color{red}\subsection{Relationship between DoF, mutual information and capacity for EIT}}
+	{\color{red}
+	\begin{remark}
+		In {\bf Theorem 2} we provide an upperbound of cDoF using fDoF. While a lowerbound will further strengthen the work, it highly relies on the characteristics of channel operator $P$. For example, if we assume that each function in $\mathcal{H_r}$ has a preimage in $\mathcal{H_t}$ through the projection $P$. According to the definition of fDoF in $\mathcal{H}_{\rm r}$ we know that there exists a function $f\in \mathcal{H}_{\rm r}$ with modulus 1 that at least $n$ bases should be used to represent it with error $\epsilon_2$. 
+		
+		
+		For a specific $g$ set $\left\| Pg \right\| =c$. Since $Pg$ falls into the $\mathcal{H}_{\rm r}$, according to the definition of fDoF in $\mathcal{H}_{\rm r}$ we know that using 
+	\end{remark}
+	}
+
+	{\color{red}\subsection{Relationship between DoF, mutual information and capacity for EIT}
+	
+	In the previous part we have provided mathematical definitions about the functional DoF (fDoF) of electromagnetic fields and the channel DoF (cDoF) considering channel conditions between the transceivers. Moreover, we have provided the analysis about the relationship between fDoF and cDoF. In this part we will have some discussions about the relationship between the defined DoF and other concepts like mutual information and capacity which have already been widely discussed in the research field of EIT.
+
+	As shown in Sec. \ref{sec:Relationship_theorem}, the proposed fDoF provides an upperbound for all kinds of channel conditions. Therefore, we can design the deployment strategies of transceivers based on the obtained fDoF, which has the maximum redundancy. To be more specific, however the channel condition changes, the designed system can capture all the possible DoF in the system. The relationsip between fDoF and cDoF is explained in {\bf Theorem} \ref{theorem_1}. When considering a specific channel, cDoF can be used and has deep connection to the mutual information and capacity. In \cite{wan2022mutual} we have expressed the mutual information between random electromagnetic fields as $I(E;Y) = \sum_i{\rm log}(1+\frac{\lambda_i}{\sigma^2})$ based on Mercer' s theorem \cite{mercer1909xvi}. It can be observed that the mutual information can be expressed as the summation of infinite terms derived from the statisitcal characteristics of the received fields, which are determined by the channel. Each item in the expression of mutual information corresponds to one degree of freedom, where different $\lambda$ reflecting the criticality weight of the corresponding sub-channel, as discussed in Defintition \ref{def_cDoF}.
+
+	When furthering considering channel capacity, we shall fix the field distribution which maximizes the mutual information to obtain the capacity based on continuous electromagnetic fields and channels. This procedure is an extension from the discrete matrices to continuous operators, represented as $P$ in Definition \ref{def_cDoF}. For discrete matrices we have $C = \underset{K_J}{\rm max}{\rm logdet}\frac{HK_JH^{\rm H}+K_N}{K_N}$ with respect to ${\rm Tr}(K_J) \leqslant P$. By using singular value decomposition and Karush–Kuhn–Tucker (KKT) theorem we can obtain the maximum mutual information which is the capacity. For operators, the optimization problem can be solved by extended KKT theorem \cite{bachir2021finitely} for countably infinite variables. The result is in the form of water-filling method, where the insignificant subchannels are discarded, remaining only channels corresponding to large eigenvalues. This procedure is the same as what we have done in the definition of DoF. 
+
+	In all, the proposed fDoF has indirect relation with mutual information and capacity, which is established by cDoF. Besides, all these concepts used in EIT are based on continuous electromagnetic fields which are in spaces with infinite dimensions. This property, distinct from finite-dimensional matrices, entails the necessity of filtering out insignificant basis functions or subchannels based on the error tolerance threshold $\epsilon$. 
+	
+	}
 	
 	\section{DoF analysis based on Slepian concentration problem}
 	\label{sec_theoretical_dof}
