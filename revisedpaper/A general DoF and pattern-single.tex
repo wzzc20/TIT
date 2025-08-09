@@ -323,6 +323,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 \label{sec:Relationship_theorem}
 	
 	\begin{lemma}
+		\label{lemma_CS_inequality}
 		Assume that $g$ is square-integrable on $\mathcal{A} \subset \mathbb{R}^n$, the kernel function of integral operator $P$ is square-integrable on $\mathcal{A}*\mathcal{B} \subset \mathbb{R}^{n+m}$.
 		We define $\left\|  g \right\|:=\sqrt{\int_{\mathcal{A}}|g({\bf x})|^2{\rm d}^n{\bf x}}$ and $\left\| P \right\|:=\sqrt{\int_{\mathcal{B}} \int_{\mathcal{A}}\Big|P({\bf x},{\bf x}')\Big|^2 {\rm d}^n{\bf x}' {\rm d}^m{\bf x} }$. Then we have $\left\| Pg  \right\| \leqslant \left\| P  \right\|\left\| g  \right\| $.
 	\end{lemma}
@@ -389,10 +390,8 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 
 	{\color{red}
 	\begin{remark}
-		In {\bf Theorem 2} we provide an upperbound of cDoF using fDoF. While a lowerbound will further strengthen the work, it highly relies on the characteristics of channel operator $P$. For example, if we assume that each function in $\mathcal{H_r}$ has a preimage in $\mathcal{H_t}$ through the projection $P$. According to the definition of fDoF in $\mathcal{H}_{\rm r}$ we know that there exists a function $f\in \mathcal{H}_{\rm r}$ with modulus 1 that at least $n$ bases should be used to represent it with error $\epsilon_2$. 
-		
-		
-		For a specific $g$ set $\left\| Pg \right\| =c$. Since $Pg$ falls into the $\mathcal{H}_{\rm r}$, according to the definition of fDoF in $\mathcal{H}_{\rm r}$ we know that using 
+		In {\bf Theorem 2} we provide an upperbound of cDoF using fDoF. While a lowerbound will further strengthen the work, it highly relies on the characteristics of channel operator $P$. Now we will show the reason. We assume that each function in $\mathcal{H}_{\rm r}$ has a preimage in $\mathcal{H}_{\rm t}$ through the projection $P$. According to the definition of fDoF in $\mathcal{H}_{\rm r}$ we know that there exists a function $f\in \mathcal{H}_{\rm r}$ with modulus 1 that at least $n$ bases should be used to represent it with error $\epsilon_2$. Let $Pg = f$ and $\left\| g\right\| = a$, we know that the channel DoF with error $\epsilon_2/a$ should be no less than $fDoF_{\epsilon_2}(\mathcal{H}_r)$. From {\bf Lemma} \ref{lemma_CS_inequality} we know that $a \geqslant 1/\left\|  P \right\|$ but can not know the upperbound of $a$, which relies on $P$ and determines the lower bound of cDoF. If we denote the upperbound of $a$ by $a_0$, it is obvious that $cDoF_{a_0\epsilon_2}(\mathcal{H}_t,\mathcal{H}_r,P)\geqslant fDoF_{\epsilon_2}(\mathcal{H}_r)$. 
+	
 	\end{remark}
 	}
 
@@ -650,6 +649,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
     	\begin{aligned}
     		D({\bf x},{\bf x}') =&  \frac{1}{2\pi^2} \frac{k_0\sin k_0 \left\| {\bf x}-{\bf x}' \right\|}{\left\|  {\bf x}-{\bf x}' \right\|}.
     	\end{aligned}
+		\label{eqn_spherical_surface}
     \end{equation}
     Then the integral equation transforms to
     	\begin{equation}
@@ -668,7 +668,40 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	\end{aligned}
 	\label{eqn_min_f_approx}
 	\end{equation}
-	where the inner product is defined as $\langle f \ket{f_i}:= \int_{\mathcal{R}} f({\bf x}) f_i^*({\bf x}) {\rm d}^3{\bf x}$, $\mathcal{R}$ is the concentration region in the space domain, $b_i = \frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$, the equality is achieved when $a_i=b_i$. Then it is obvious that by using the eigenfunctions with large eigenvalues as bases, we can approximate arbitrary concentrated function with tolerable error. Although the space constructed by all concentrated functions has infinite dimensions, we only care about part of them. The eigenfunctions correspond to the dimensions we care about can be used as waveform patterns to construct any required electromagnetic field in wireless communication process.       
+	where the inner product is defined as $\langle f \ket{f_i}:= \int_{\mathcal{R}} f({\bf x}) f_i^*({\bf x}) {\rm d}^3{\bf x}$, $\mathcal{R}$ is the concentration region in the space domain, $b_i = \frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$, the equality is achieved when $a_i=b_i$. Then it is obvious that by using the eigenfunctions with large eigenvalues as bases, we can approximate arbitrary concentrated function with tolerable error. Although the space constructed by all concentrated functions has infinite dimensions, we only care about part of them. The eigenfunctions correspond to the dimensions we care about can be used as waveform patterns to construct any required electromagnetic field in wireless communication process.     
+	
+	\begin{remark}
+		\label{remark_fDoF_eigenvalues}
+		(relationship between the functional DoF and the Slepian concentration problem) From the Slepian concentration problem we have a set of orthogonal eigen-functions $f_i \in \mathcal{H}$ and eigenvalues $\lambda_i$ for functions band-limited in wavenumber domain and approximately band-limited in the space domain. From \eqref{eqn_min_f_approx} we know that these functions satisfy the condition that $\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2 = \sum_{i=n+1}^{+\infty}b_i^2 \lambda_i $, where $b_i =\frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$ and the minimum is achieved when $a_i=b_i$. Moreover, we have
+		\begin{equation}
+			\begin{aligned}
+				\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2	\leqslant (\sum_{i=n+1}^{+\infty}b_i^2) \lambda_{n+1} \leqslant \lambda_{n+1}.
+			\end{aligned}
+		\end{equation}  
+		Therefore, the number of large eigenvalues in the Slepian concentration problem determines the functional DoF of the space $\mathcal{H}$, i.e.,
+		\begin{equation}
+			\begin{aligned}
+				\mathsf{fDoF}_{\epsilon} (\mathcal{H}) \leqslant \#\{n: \lambda_{n+1} \geqslant \epsilon^2\}.
+			\end{aligned}
+		\end{equation} 
+	\end{remark}
+
+{\color{red}
+	From {\bf Remark} \ref{remark_fDoF_eigenvalues} we have shown how the eigenvalues of Slepian concentration problem influences the fDoF of the electromagnetic field. It is worth noting that deriving analytical solutions of the eigenvalues is helpful for the DoF analysis but very difficult especially in high dimensions. In fact, the existing mathematical literatures about Slepian concentration problem mainly focus on finding better numerical calculation schemes instead of analytical solutions for the eigenvalue and eigenfucntion solutions. 
+	For the concentration problem, one approach is constrainting one domain on a sphere and the other domain using degrees and orders of spherical harmonic functions. An early work considering both symptotic results and numerical calculations in non-symptotic scenarios has been dicussed in \cite{simons2006spatiospectral}. Further works added colatitude–longitude spatial region constraints on the sphere and provided numerical calculation schemes for the eigen-problem \cite{bates2016slepian}. Since our DoF analysis is with the physical constraints in space-wavenumber domains, the constraints based on spherical harmonic functions do not well fit our need. 
+	
+	Another approach is directly considering two domains that are Fourier transform or inverse Fourier transform of each other. By directly performing sampling on the constraint regions, \cite{beylkin2007grids} considers the two dimensional Slepian concentration problem with disc-shaped constraint region in one domain and rectangle-shaped region in the other domain.
+	The fast-converging numerical calculation scheme for evaluating the two dimensional Slepian concentration problem was analyzed in \cite{shkolnisky2007prolate}, which consider disc-shaped constraints in two domains that are Fourier transform or inverse Fourier transform of each other. 
+	Its further extension to higher dimensional balls was shown in \cite{zhang2020ball} which also considered numerical schemes and had no analytical solutions. Moreover, these two papers considered an ideal case when the concentration regions in the two domains are both $n$-dimensional balls, while our concentration region in the space domain may not always have spherical symmetry. 
+	
+	In all, we can find that providing analytical solutions for the eigenvalues and eigenfunctions when considering the Slepian concentration problem in high dimensions is very difficult. Therefore, obtaining numerical solutions after deriving the integral equations, which is not the best but is a practically feasible route, is chosen in our paper. Besides numerical simualtions, we also provide some analysis of the properties of the eigenvalues based on the derived kernel functions, which are shown as follows.
+
+}
+
+{\color{red}
+
+We now focus on the kernel function $D_1({\bf x},{\bf x}')=\frac{1}{2\pi^2} \left( \frac{\sin k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^3}-\frac{k_0\cos k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^2} \right)$ in (\ref{equ_ball}) and $D_2({\bf x},{\bf x}') = \frac{1}{2\pi^2} \frac{k_0\sin k_0 \left\| {\bf x}-{\bf x}' \right\|}{\left\|  {\bf x}-{\bf x}' \right\|}$ in (\ref{eqn_spherical_surface}), as they represent two extreme cases with full band on $(0,\omega_0]$ and single frequency point $\omega_0$. First of all, we will discuss whether the eigenvalues of the integral operators with these two kernels 
+}
    
 	In the above part we are analyzing the scenario where the direction of ${\bf k}$ is not restricted, which means that the incident wave to the receiver may have arbitrary direction, corresponding to general channel settings. Given a specific channel, the direction of the incident wave to the receiver may be constrained, which adds further restrictions on ${\bf k}$.  Specifically, new constraints ${\Omega}_1 \subset {\Omega}=\{\hat{\bf k}: \left\| \hat{\bf k} \right\|=1\}$ on $\hat{\bf k}$ can be introduced, which is determined by the concentration region of the electromagnetic field caused by the scattering channel. {\color{red} The restrictions on $k$ has been used in channel modeling schemes\cite{pizzo2022fourier}, as a tool to depict the wavenumber domain characteristics caused by the scatterers.
 	It has also been used for DoF analysis\cite{poon2005degrees}, where asymptotic conclusions about the channel DoF is obtained based on one-dimensional Slepian concentration problem. } In this paper, we can have the following transform in three dimensional space
@@ -692,21 +725,6 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 		\end{aligned}
 		\label{eqn_wavenumber_constraint3}
 	\end{equation}
-
-		\begin{remark}
-		(relationship between the functional DoF and the Slepian concentration problem) From the Slepian concentration problem we have a set of orthogonal eigen-functions $f_i \in \mathcal{H}$ and eigenvalues $\lambda_i$ for functions band-limited in wavenumber domain and approximately band-limited in the space domain. From \eqref{eqn_min_f_approx} we know that these functions satisfy the condition that $\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2 = \sum_{i=n+1}^{+\infty}b_i^2 \lambda_i $, where $b_i =\frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$ and the minimum is achieved when $a_i=b_i$. Moreover, we have
-		\begin{equation}
-			\begin{aligned}
-				\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2	\leqslant (\sum_{i=n+1}^{+\infty}b_i^2) \lambda_{n+1} \leqslant \lambda_{n+1}.
-			\end{aligned}
-		\end{equation}  
-		Therefore, the number of large eigenvalues in the Slepian concentration problem determines the functional DoF of the space $\mathcal{H}$, i.e.,
-		\begin{equation}
-			\begin{aligned}
-				\mathsf{fDoF}_{\epsilon} (\mathcal{H}) \leqslant \#\{n: \lambda_{n+1} \geqslant \epsilon^2\}.
-			\end{aligned}
-		\end{equation} 
-	\end{remark}
 	
 	
 Since ${\Omega}_1$ may have complicated shapes, which makes the aforementioned scheme that integrating from wavenumber domain hard to analyze, we need to find another way to solve the concentration problem. It is shown that the solving the integral equation of the concentration problem from either of the two domains that are Fourier and inverse Fourier transforms of each other yields consistent eigenvalues\cite{beylkin2007grids}. Therefore, if the concentration region in the space domain has regular shapes, we can obtain the kernel function by integrating from the spatial domain, which is easier. Assume that the spatial concentration region is a ball which satisfies $\left\| {\bf x} \right\|\leqslant r_0$, we can obtain the kernel function as
@@ -757,7 +775,7 @@ Corresponding to \eqref{eqn_wavenumber_constraint3}, the concentrated functions 
 %	\end{aligned}
 %\end{equation}
 %	
-	
+
 	\subsection{Slepian's concentration problem in four-dimensional space-time domain}
 	
 	After discussing the theoretical analysis in the three-dimensional domain, we now go further into the four-dimensional space-time domain, which fully characterizes the electromagnetic fields. Moreover, only with the change in the time domain can we transmit information in practical wireless communication systems.
