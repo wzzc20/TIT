@@ -197,13 +197,14 @@ To answer the above questions and provide a general DoF and pattern analyzing sc
 \end{itemize}
 
 \subsection{Notation}
-Bold uppercase characters denote matrices;
-bold lowercase characters denote vectors;
-the dot $\cdot$ denotes the scalar product of two vectors, or the matrix-vector multiplication; 
-$c$ is the speed of light in a vacuum; 
+Bold uppercase characters {\color{red}${\bf H}$} denote matrices;
+bold lowercase characters {\color{red}${\bf k}$} denote vectors, {\color{red} $\left\| {\bf k} \right\|$ denotes the norm of the vector, and $\hat{\bf k}$ denote the direction of the vector};
+the dot $\cdot$ denotes the scalar product of two vectors, or the matrix-vector multiplication; {\color{red} ${\rm Tr(\cdot)}$ is the trace of a matrix, and ${\rm det}(\cdot)$ is the determinant of a matrix; $(\cdot)^{\rm T}$ is the transpose of a vector or a matrix, $(\cdot)^{\rm H}$ is the conjugate transpose of a vector or a matrix, and $(\cdot)^{*}$ is the conjugate of a number, a vector or a matrix; $|\cdot|$ is the absolute value of a number; $\nabla$ is the nabla operator, and $\nabla \times$ is the curl operator; $f(x)|_a^b$ is $f(b)-f(a)$;}
+$c$ is the speed of light in a vacuum{\color{red}, $\epsilon_0$ is the permittivity of a vacuum, $\mu_0$ is the permeability of a vacuum, $\omega$ is the angular frequency, and ${\bf k}$ is the wavenumber vector; $\underset{x \in S}{\rm sup}f(x)$ is the supremum of $f(x)$ over $x\in S$, and $\underset{x \in S}{\rm inf}f(x)$ is the infimum of $f(x)$ over $x\in S$;} 
 $\mathscr{F}[f(x)]$ denotes the Fourier transform of $f(x)$; 
 $J_m(x)$ is the $m_{\rm th}$ order Bessel function of the first kind; 
-The inner product of $f: \mathbb{R}^n \rightarrow \mathbb{C}$ and $f_i: \mathbb{R}^n \rightarrow \mathbb{C}$ on the domain $\mathcal{A}$ is denoted by $\langle f \ket{f_i}:= \int_{\mathcal{A}} f({\bf x}) f_i^*({\bf x}) {\rm d}^n{\bf x}$. The norm of $f$ is denoted by $\left\| f \right\|:=(\langle f \ket{f})^{1/2} $. 
+The inner product of $f: \mathbb{R}^n \rightarrow \mathbb{C}$ and $f_i: \mathbb{R}^n \rightarrow \mathbb{C}$ on the domain $\mathcal{A}$ is denoted by $\langle f \ket{f_i}:= \int_{\mathcal{A}} f({\bf x}) f_i^*({\bf x}) {\rm d}^n{\bf x}$. The norm of $f$ is denoted by $\left\| f \right\|:=(\langle f \ket{f})^{1/2} $; {\color{red}$\mathbb{Z}^+$ refers to the set of all positive integers, and $\mathbb{R}^{n}$ refers to an 
+$n$-dimensional vector space over the real numbers}. 
 
 {\color{red}\section{Basic model and DoF definition for EIT}
 
@@ -410,7 +411,28 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	\section{DoF analysis based on Slepian concentration problem}
 	\label{sec_theoretical_dof}
 	In this part we will discuss the DoF of electromagnetic fields using the theoretical tools from Slepian concentration problem. 
-	Slepian concentration problem considers the optimal representation of a signal bandlimited in the frequency domain and approximately bandlimited in time domain by using a set of orthogonal bases. The number of the base functions that need to be used to approximate the signal with a given error threshold represents the DoF of the signal space that satisfies the above conditions. We will first introduce the existing mathematical forms of Slepian concentration problem in one and two-dimensional cases and then extend them to the three-dimensional space domain and four-dimensional space-time domain under electromagnetic constraints. 
+	Slepian concentration problem considers the optimal representation of a signal bandlimited in the frequency domain and approximately bandlimited in time domain by using a set of orthogonal bases. The number of the base functions that need to be used to approximate the signal with a given error threshold represents the DoF of the signal space that satisfies the above conditions. {\color{red}We will first introduce existing works about Slepian concentration problems in the literature and the difference in our work. Then we will show the mathematical forms of Slepian concentration problem in one and two-dimensional cases which have been discussed in literature. By considering electromagnetic constraints, we extend the Slepian concentration problem to the three-dimensional space domain and four-dimensional space-time domain, and provide some discussions about the properties of eigenvalues and eigenfunctions solved from the Slepian concentration problem}. 
+
+	{\color{red}
+	\subsection{A brief introduction of the existing works on Slepian concentration problem}
+	}
+	
+	{\color{red}
+	The original work which is accomplished by Slepian analyzed the one-dimensional time-frequency concentration problem which has analytical solutions for the eigenvalues and eigenfunctions\cite{slepian1961prolate}. Based on these analytical solutions, the number of large eigenvalues and the behaviour of decay rate of small eigenvalues can be directly analyzed. The results about one-dimensional Slepian concentration problem serve as powerful tools, which have been widely adopted in many areas, including spectrum estimation\cite{thomson2005spectrum}, capacity analysis\cite{cover1999elements}, numerical integration\cite{xiao2001prolate}, uncertainty relations\cite{furrer2014position}, etc.
+	
+	Slepian has also discussed the possible extension of the concentration problem to high dimensions with sphere-shaped concentration region\cite{slepian1964prolate}, but provided no analytical solutions for the eigenvalues. Many researchers have followed his work, analyzing the Slepian concentration problem with different domain representation and concentration regions. Due to the high complexity of the high-dimensional structures, even for high symmetric models the existing works still focus on numerical calculation schemes instead of finding analytical solutions for the eigenvalue and eigenfucntion solutions. 
+
+	For the domain representation, one approach is constrainting one domain on a sphere and the other domain using degrees and orders of spherical harmonic functions. An early work considering both symptotic results and numerical calculations in non-symptotic scenarios has been dicussed in \cite{simons2006spatiospectral}. Further works added colatitude–longitude spatial region constraints on the sphere and provided numerical calculation schemes for the eigen-problem \cite{bates2016slepian}. Since our DoF analysis is with the physical constraints in space-wavenumber domains, the constraints based on spherical harmonic functions do not well fit our need. 
+	
+	Another approach is directly considering two domains that are Fourier transform or inverse Fourier transform of each other. By directly performing sampling on the constraint regions, \cite{beylkin2007grids} considered the two dimensional Slepian concentration problem with disc-shaped constraint region in one domain and rectangle-shaped region in the other domain. In a similar form, \cite{simons2011spatiospectral} considered disc-shaped constraint regions in both of the two domains. 
+	The fast-converging numerical calculation scheme for evaluating the two dimensional Slepian concentration problem was analyzed in \cite{shkolnisky2007prolate}, which considered disc-shaped constraints in two domains that are Fourier transform or inverse Fourier transform of each other. 
+	Its further extension to higher dimensional balls was shown in \cite{zhang2020ball} which also considered numerical schemes and had no analytical solutions. Moreover, these two papers considered an ideal case when the concentration regions in the two domains are both $n$-dimensional balls, while our concentration region in the space domain may not always have spherical symmetry. 
+
+	Comparing to these existing mathematical works, in this paper we will fomulate the Slepian concentration problem in three-dimensional space-wavenumber domain and four-dimensional domain which also includes time-frequency. We will obtain the concentration region in the wavenumber domain based on physical constraints like the dispersion relation. Compared to spherical regions, we mainly focus on cuboid-shaped spatial concentration region which fits transceivers in reality better, which will break the spherical symmetry and make performing theoretical analysis even harder.  
+	
+	In all, we can find that providing analytical solutions for the eigenvalues and eigenfunctions when considering the Slepian concentration problem in high dimensions is very difficult. Therefore, obtaining numerical solutions after deriving the integral equations, which is not the best but is a practically feasible route, is chosen in our paper. Besides numerical simualtions, we also provide some quantitative and qualitative analysis and discussions of the properties of the eigenvalues based on the derived kernel functions, which will be shown in the following parts.
+
+}
 	
 	\subsection{Slepian concentration problem in one and two-dimensional domain}
 	\label{subsec_1d2d_Selpian}
@@ -504,7 +526,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	\end{equation}
 	where $A$ is the area of $\mathcal{R}$. 
 	
-	\subsection{Slepian concentration problem in three-dimensional domain}
+	\subsection{Slepian concentration problem in three-dimensional space-wavenumber domain for electromagnetic field}
 	\label{subsec_3d_slepian}
 	
 	Now we will analyze the case with three-dimensional domain, which depicts the electromagnetic fields in the space. We consider the constraints of electromagnetic fields in space and wavenumber domain. In space domain the electromagnetic field is observed within the region of transceivers. In wavenumber domain the electromagnetic field is constrained by the frequency settings according to dispersion relation. There are two different cases of the constraints in wavenumber domain. The first one is with a frequency bandwidth, which corresponds to the constraint region as a ball in the wavenumber domain ($k_x^2+k_y^2+k_z^2 \leqslant k_0^2$) or a spherical shell in the wavenumber domain ($k_1^2 \leqslant k_x^2+k_y^2+k_z^2 \leqslant k_0^2$). The second one is on a single frequency point, which corresponds to the constraint region as a sphere in the wavenumber domain ($k_x^2+k_y^2+k_z^2=k_0^2$).  For the first case similar to what has been discussed in one-dimensional and two-dimensional examples, we have 
@@ -613,10 +635,15 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 		\lambda_i f_i({\bf x}) = \int_{\mathcal{R}}D({\bf x},{\bf x}')f_i({\bf x}'){\rm d}^3{\bf x}'.
 		\label{eigenfunction_3d}
 	\end{equation}
-	Here we set $\{F_{2,n}(k)\}_{n=1}^{+\infty} = \frac{1}{2h}\left( 1-\frac{|k-k_0|}{2h} \right), |k-k_0|\leqslant 2h$, $h = \frac{1}{2^n}$ to be a set of functions that make $F({\bf k})$ focus on a sphere surface in the wavenumber domain. When $n \rightarrow \infty$, $F_2(k) \rightarrow \delta(k-k_0)$. To be clearer, we have
+	Here we set $\{F_{2,n}(k)\}_{n=1}^{+\infty} = \frac{1}{2h}\left( 1-\frac{|k-k_0|}{2h} \right), |k-k_0|\leqslant 2h$, $h = \frac{1}{2^n}$ to be a set of functions that make $F({\bf k})$ focus on a sphere surface in the wavenumber domain. When $n \rightarrow \infty$, $F_2(k) \rightarrow \delta(k-k_0)$. {\color{red} In a more rigourous description, we have $\underset{n \rightarrow +\infty}{\rm lim}{\int_{\mathbb{R}} F_2(k)f(k) } = f(k_0)$ for arbitrary smooth and compactly supported function $f(k) \in C_c^{\infty}({\mathbb R})$. It is worthnoting that we use the function series $\{F_{2,n}(k)\}_{n=1}^{+\infty}$ due to two reasons. Firstly, We can establish the connection between the case where the support in wavenumber domain has a continuous extent in $k$ (finite n),and the case localized only at the point $k_0$ ($n \rightarrow \infty$). Secondly, we can avoid directly using delta functions since they are not genuine functions but generalized functions, which posses some properties that can not be achieved by real-valued functions. Using a series of well-defined integrable functions, known as approximate identities, to approach the delta function is a common way used in existing literatures\cite{strichartz2003guide}. From the above discussions we can also observe that the functions $\{F_{2,n}(k)\}_{n=1}^{+\infty}$ can not be arbitrarily chosen. They should satisfy the power constraint $\int F_2(k) {\rm d}k = 1$ and desribe a unit point mass at $k = k_0$ when $n \rightarrow \infty$ (or can be equivalently described as "support set shrinks to 0 when $n \rightarrow \infty$")
+	from the limitation perspective
+	\cite{wheeler1997simplified}. 
+	Then they all have the property $\underset{n \rightarrow +\infty}{\rm lim}{\int_{\mathbb{R}} F_2(k)f(k) } = f(k_0)$. There are infinite choices for such function series, but they have the same limitation as delta function \cite{wheeler1997simplified} and will lead to the same DoF.} 
+	
+	To be clearer, we begin from our chosen function series, which has the following indefinite integral
 	 \begin{equation}
 	 	\begin{aligned}
-	 		&\int \frac{1}{2h}\left( 1-\frac{|k-k_0|}{2h} \right)k^2e^{{\rm j}k\hat{\bf k}\cdot {\bf x}}{\rm d}k
+	 		&\int\frac{1}{2h}\left( 1-\frac{|k-k_0|}{2h} \right)k^2e^{{\rm j}k\hat{\bf k}\cdot {\bf x}}{\rm d}k
 	 		= \left\{\begin{matrix}
 	 		g_1(k)	& k \in [k_0,k_0+2h),\\
 	 			g_2(k)	& k \in (k_0-2h,k_0),
@@ -672,10 +699,10 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	
 	\begin{remark}
 		\label{remark_fDoF_eigenvalues}
-		(relationship between the functional DoF and the Slepian concentration problem) From the Slepian concentration problem we have a set of orthogonal eigen-functions $f_i \in \mathcal{H}$ and eigenvalues $\lambda_i$ for functions band-limited in wavenumber domain and approximately band-limited in the space domain. From \eqref{eqn_min_f_approx} we know that these functions satisfy the condition that $\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2 = \sum_{i=n+1}^{+\infty}b_i^2 \lambda_i $, where $b_i =\frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$ and the minimum is achieved when $a_i=b_i$. Moreover, we have
+		(relationship between the functional DoF and the Slepian concentration problem) From the Slepian concentration problem we have a set of orthogonal eigen-functions $f_i \in \mathcal{H}$ and eigenvalues $\lambda_i$ for functions band-limited in wavenumber domain and approximately band-limited in the space domain. From \eqref{eqn_min_f_approx} we know that these functions satisfy the condition that $\underset{\{a_i\}_{i=1}^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2 = \sum_{i=n+1}^{+\infty}b_i^2 \lambda_i $, where $b_i =\frac{ \langle f \ket{f_i}}{\left\| f_i \right\|^2}= \frac{1}{\lambda_i} \langle f \ket{f_i}$ and the minimum is achieved when $a_i=b_i$. Moreover, we have
 		\begin{equation}
 			\begin{aligned}
-				\underset{a_i^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2	\leqslant (\sum_{i=n+1}^{+\infty}b_i^2) \lambda_{n+1} \leqslant \lambda_{n+1}.
+				\underset{\{a_i\}_{i=1}^n}{\rm min}\left\| f- \sum_{i=1}^n a_i f_i    \right\|^2	\leqslant (\sum_{i=n+1}^{+\infty}b_i^2) \lambda_{n+1} \leqslant \lambda_{n+1}.
 			\end{aligned}
 		\end{equation}  
 		Therefore, the number of large eigenvalues in the Slepian concentration problem determines the functional DoF of the space $\mathcal{H}$, i.e.,
@@ -687,18 +714,8 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	\end{remark}
 
 {\color{red}
-	From {\bf Remark} \ref{remark_fDoF_eigenvalues} we have shown how the eigenvalues of Slepian concentration problem influences the fDoF of the electromagnetic field. It is worth noting that deriving analytical solutions of the eigenvalues is helpful for the DoF analysis but very difficult especially in high dimensions. In fact, the existing mathematical literatures about Slepian concentration problem mainly focus on finding better numerical calculation schemes instead of analytical solutions for the eigenvalue and eigenfucntion solutions. 
-	For the concentration problem, one approach is constrainting one domain on a sphere and the other domain using degrees and orders of spherical harmonic functions. An early work considering both symptotic results and numerical calculations in non-symptotic scenarios has been dicussed in \cite{simons2006spatiospectral}. Further works added colatitude–longitude spatial region constraints on the sphere and provided numerical calculation schemes for the eigen-problem \cite{bates2016slepian}. Since our DoF analysis is with the physical constraints in space-wavenumber domains, the constraints based on spherical harmonic functions do not well fit our need. 
-	
-	Another approach is directly considering two domains that are Fourier transform or inverse Fourier transform of each other. By directly performing sampling on the constraint regions, \cite{beylkin2007grids} considers the two dimensional Slepian concentration problem with disc-shaped constraint region in one domain and rectangle-shaped region in the other domain.
-	The fast-converging numerical calculation scheme for evaluating the two dimensional Slepian concentration problem was analyzed in \cite{shkolnisky2007prolate}, which consider disc-shaped constraints in two domains that are Fourier transform or inverse Fourier transform of each other. 
-	Its further extension to higher dimensional balls was shown in \cite{zhang2020ball} which also considered numerical schemes and had no analytical solutions. Moreover, these two papers considered an ideal case when the concentration regions in the two domains are both $n$-dimensional balls, while our concentration region in the space domain may not always have spherical symmetry. 
-	
-	In all, we can find that providing analytical solutions for the eigenvalues and eigenfunctions when considering the Slepian concentration problem in high dimensions is very difficult. Therefore, obtaining numerical solutions after deriving the integral equations, which is not the best but is a practically feasible route, is chosen in our paper. Besides numerical simualtions, we also provide some quantitative and qualitative analysis and discussions of the properties of the eigenvalues based on the derived kernel functions, which are shown as follows.
 
-}
-
-{\color{red}
+From {\bf Remark} \ref{remark_fDoF_eigenvalues} we have shown how the eigenvalues of Slepian concentration problem influences the fDoF of the electromagnetic field. Now we will have some discussions about the properties of the eigenvalues, including the decay rate, the possible large values, and its relationship with the varying speed of the eigenfunctions, etc. These properties can also be observed in the numerical simulation part. 
 
 We now focus on the kernel functions $D_1({\bf x},{\bf x}')=\frac{1}{2\pi^2} \left( \frac{\sin k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^3}-\frac{k_0\cos k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^2} \right)$ in (\ref{equ_ball}) and $D_2({\bf x},{\bf x}') = \frac{1}{2\pi^2} \frac{k_0\sin k_0 \left\| {\bf x}-{\bf x}' \right\|}{\left\|  {\bf x}-{\bf x}' \right\|}$ in (\ref{eqn_spherical_surface}), as they represent two extreme cases with full band $(0,\omega_0]$ and single frequency point $\omega_0$. First of all, we will discuss the decay rate of the eigenvalues of the integral operators with these two kernels. In \cite{reade1983eigen}, the eigenvalues obey the rule $\lambda_n  = o(n^{-k-1})$, where $k$ is the the order of differentiability of the kernel function of the integral operator. Therefore, determining the differentiability (smoothness) helps to predict the long-term behaviour of the eigenvalues.
 It is easy to observe that $D_1({\bf x},{\bf x}')$ and $D_2({\bf x},{\bf x}')$ are real analytic if we do not consider the point ${\bf x} = {\bf x}'$. Now we will examine if they are real analytic at ${\bf x} = {\bf x}'$. 
@@ -709,7 +726,7 @@ which means that the Taylor expansions of $E_1(r)$ and $E_2(r)$ only contain eve
 Moreover, when checking the Fourier transforms of the kernel function $D_1$ and $D_2$, it is easy to observe from their derivation procedure that $D_1$ has a broader basis on $k \in (0,k_0]$ while $D_2$ only on a single point. Then from a qualitative perspective, we know that $D_1$ and $D_2$ has the same spherical symmetry in the wavenumber domain. Their difference exists on the radius dimension. To be more specifc,
 $D_1$ excites the all possible modes that are below the frequency limit $w_0$, which tends to result in a series of similar large eigenvalues. On the contrary, $D_2$ only excites one mode at the frequency point $w_0$, which tends to result in one or only a few large eigenvalues. 
 
-It is also worthnoting that the integral operators mentioned above can be viewed as low-pass filters since they tend to keep the slow-varying components due to the smoothness of the kernels. Therefore, it is expected that when solving the concentration problem, the eigenfunctions that vary slower on the space domain will correspond to larger eigenvalues. According to {\bf Remark} \ref{remark_fDoF_eigenvalues}, these eigenfunctions serve as good electromagnetic bases since they are more important when constructing required transmitted fields compared to other eigenfunctions.
+It is also worthnoting that the integral operators mentioned above can be viewed as low-pass filters since they tend to keep the slow-varying components due to the smoothness of the kernels. Therefore, it is expected that when solving the concentration problem, the eigenfunctions that vary slower on the space domain will correspond to larger eigenvalues. According to {\bf Remark} \ref{remark_fDoF_eigenvalues}, these eigenfunctions serve as good electromagnetic bases since they are more important when constructing required transmitted fields compared to other eigenfunctions, which will be verified in the simulation parts.
 }
    
 	In the above part we are analyzing the scenario where the direction of ${\bf k}$ is not restricted, which means that the incident wave to the receiver may have arbitrary direction, corresponding to general channel settings. Given a specific channel, the direction of the incident wave to the receiver may be constrained, which adds further restrictions on ${\bf k}$.  Specifically, new constraints ${\Omega}_1 \subset {\Omega}=\{\hat{\bf k}: \left\| \hat{\bf k} \right\|=1\}$ on $\hat{\bf k}$ can be introduced, which is determined by the concentration region of the electromagnetic field caused by the scattering channel. {\color{red} The restrictions on $k$ has been used in channel modeling schemes\cite{pizzo2022fourier}, as a tool to depict the wavenumber domain characteristics caused by the scatterers.
