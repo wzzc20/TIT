@@ -182,7 +182,7 @@ To meet the demand of high spectral density for 6G wireless communication system
 The existing research directions of EIT includes channel modeling schemes \cite{gong2023holographic,wei2023tri,pizzo2023wide}, DoF analysis \cite{bucci1987spatial, bucci1989degrees,franceschetti2015landau}, mutual information and capacity analysis \cite{jensen2008capacity,jeon2017capacity,wan2022mutual}, etc.
 Among these directions, DoF analysis is one of the most important parts, since it provides the upper bound of usable data streams and shows the required number of antennas, which guides the design of practical antenna arrays. {\color{red}To be more speficic, the DoF of an electromagnetic field characterizes the dimension of the functional space it spans, i.e., the minimum number of orthogonal base functions required for its representation. Compared to mutual information or capacity analysis, the DoF analyzing framework offers a more fundamental and physically intuitive criterion for determining the number of antennas required in array design to approach optimal system performance. }
 
-Therefore, there is a fundamental question in EIT that how many DoFs can be provided by a wireless communication system constrained by electromagnetism? Moreover, how can we utilize these DoFs to transfer information? For the analysis of DoFs in EIT, one approach is considering bandwidth in the wavenumber domain.  The bandwidth above is called spatial bandwidth in \cite{bucci1987spatial}, which is similar to the widely-used bandwidth in time-frequency domain \cite{slepian1976bandwidth}. Identical to the time sampling scheme determined by classical bandwidth in the frequency domain, the bandwidth in wavenumber domain determines the sampling scheme in the space domain, which corresponds to the spatial DoF of the electromagnetic field. The spatial bandwidth of scattered fields was rigorously derived in \cite{bucci1987spatial}. It was shown that for a time-harmonic model with scatterers bounded in a sphere, the spatial bandwidth of the electromagnetic fields on an infinitely long observation line is linear with the frequency and the radius of the sphere. From the spatial bandwidth, the DoF obtained on a one-dimensional observation line is analyzed in \cite{bucci1989degrees} based on the conclusions of Slepian concentration problem and prolate spheroidal wave functions. For arbitrary received fields on two-dimensional surface, half-wavelength sampling scheme in the spatial domain was obtained in \cite{balanis2015antenna} when evanescent waves were discarded, which provided insightful results about the bound of DoF from direct spatial sampling. However, the spatial sampling requires infinite observation regions in the spatial domain, which is not consistent with practical wireless communication systems with finite spatial regions. 
+Therefore, there is a fundamental question in EIT that how many DoFs can be provided by a wireless communication system constrained by electromagnetism? Moreover, how can we utilize these DoFs to transfer information? For the analysis of DoFs in EIT, one approach is considering bandwidth in the wavenumber domain.  The bandwidth above is called spatial bandwidth in \cite{bucci1987spatial}, which is similar to the widely-used bandwidth in time-frequency domain \cite{slepian1976bandwidth}. Identical to the time sampling scheme determined by classical bandwidth in the frequency domain, the bandwidth in wavenumber domain determines the sampling scheme in the space domain, which corresponds to the spatial DoF of the electromagnetic field. The spatial bandwidth of scattered fields was rigorously derived in \cite{bucci1987spatial}. It was shown that for a time-harmonic model with scatterers bounded in a sphere, the spatial bandwidth of the electromagnetic fields on an infinitely long observation line is linear with the frequency and the radius of the sphere. {\color{red} From the spatial bandwidth, the DoF obtained on a one-dimensional observation line is analyzed in \cite{bucci1989degrees} based on the conclusions of Slepian concentration problem and prolate spheroidal wave functions. The model used in this work is limited to one-dimensional receivers, which is a simplification of real-world receivers with more complex structures in two-dimensional or three-dimensional space domain.} For arbitrary received fields on two-dimensional surface, half-wavelength sampling scheme in the spatial domain was obtained in \cite{balanis2015antenna} when evanescent waves were discarded, which provided insightful results about the bound of DoF from direct spatial sampling. However, the spatial sampling requires infinite observation regions in the spatial domain, which is not consistent with practical wireless communication systems with finite spatial regions. {\color{red} Moreover, while the real-world communication systems simultaneously involve mutually-coupled time and space domains, the time domain is ommitted in the above works.}
 
 For the DoF analysis considering finite spatial observation region, another approach follows Landau's eigenvalue theorem, which provides asymptotic DoF conclusions \cite{landau1980eigenvalue}. Here the asymptotic conclusion is achieved when the product of the Lebesgue measure of constraint regions in space and wavenumber domain tends to infinity, which implies either sufficiently large transceivers or sufficiently large frequency bandwidth. Following Landau's eigenvalue theorem, the DoF and spatial sampling scheme were discussed for two-dimensional antenna array \cite{pizzo2022nyquist}, which was based on the time-harmonic assumption and ignored the impact of the time domain. 
 To further include the time domain in the wireless communication system, a model considering both space and time domain is used in \cite{franceschetti2015landau}, which shows the asymptotic DoF observed along a spatial cut-set boundary that separates transmitters and receivers. Although the existing works have already proposed many useful conclusions about the asymptotic DoF, there are still some important questions that remain to be answered. First of all, the non-asymptotic case which does not require sufficiently large transceivers or sufficiently large frequency bandwidth has not been discussed yet. Since practical wireless communication systems suit non-asymptotic cases better than asymptotic cases, discussing the DoF under non-asymptotic cases is of importance. Secondly, the DoF discussed here is the functional DoF of the transmitted/received electromagnetic fields, which is the dimension of the space constructed by all possible electromagnetic fields at one side of the transceiver\cite{zhu2022electromagnetic}. For practical wireless communication systems, we care more about the channel DoF which is determined by both transceivers and also the channel conditions. The relationship between the functional DoF and channel DoF remains to be discussed. 
@@ -285,6 +285,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 }
 
 \begin{definition}
+	\label{def_fDoF}
 		(functional DoF) Let $\mathcal{H}$ be a Hilbert space and $\{f_i\}_{i=1}^n \in \mathcal{H}$ be a set of orthogonal base functions. If for arbitrary function $f \in \mathcal{H}$ that satisfies $\left\| f \right\|=1$, there always exists a set of numbers $a_i$ that 
 		$\left\| f-\sum_{i=1}^n a_i f_i  \right\| \leqslant \epsilon$. The minimum $n$ that satisfies the above conditions is the functional DoF of $\mathcal{H}$ with error $\epsilon$, i.e.,
 		\begin{equation}
@@ -452,7 +453,7 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	Then for a bandlimited signal $G(\omega) = \int_{-T}^{+T}g(t)e^{-{\rm j}\omega t}{\rm d}t$, the optimally concentrated signal is taken to be the one that maximizes $\lambda = \frac{\int_{-\Omega}^{\Omega}|G(\omega)|^2{\rm d}\omega}{\int_{-\infty}^{\infty}|G(\omega)|^2{\rm d}\omega}$, which leads to the following integral equation
 	\begin{equation}
 	\begin{aligned}
-		\int_{-T}^{T}D(t,t')g(t'){\rm d}t' = \lambda g(t),
+		\int_{-T}^{T}D(t,t'){\color{red}g_i}(t'){\rm d}t' = {\color{red}\lambda_{i} g_i(t)},
 	\end{aligned}
 	\label{eqn_1d_t}
 	\end{equation}
@@ -468,10 +469,10 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 			N^{1D} = \sum_{i=1}^\infty \lambda_i = \int_{-T}^{T}D(t,t){\rm d}t = \frac{2\Omega T}{\pi},
 		\end{aligned}
 	\end{equation}
-	when $\Omega T \rightarrow \infty$ \cite{slepian1961prolate}. We show in Fig. \ref{1d_omegaT} that when $\Omega T \rightarrow \infty$, the decay line of eigenvalues will have a cut-off transition. Nearly $N^{1D}$ eigenvalues are on the left side of the transition line, which tend to the same maximum value. Moreover, nearly all eigenvalues on the right side of the transition line tends to 0. Therefore, $N^{1D}$ is the asymptotic DoF of the signal space when $\Omega T \rightarrow \infty$. {\color{red}It is worthnoting that we can find the ``optimally concentrated signal" both from time and frequency domain, and the eigenvalue $\lambda$ will be the same. When beginning from $g(t) = (2\pi)^{-1}\int_{-\Omega}^{\Omega}G(\omega)e^{{\rm j}\omega t} {\rm d}\omega$, we have $\lambda = \frac{\int_{-T}^{T}|g(t)|^2{\rm d}t}{\int_{-\infty}^{\infty}|g(t)|^2{\rm d}t}$. Then we have 
+	when $\Omega T \rightarrow \infty$ \cite{slepian1961prolate}. We show in Fig. \ref{1d_omegaT} that when $\Omega T \rightarrow \infty$, the decay line of eigenvalues will have a cut-off transition. {\color{red} Here we use numerical scheme to solve the integral equation (\ref{eqn_1d_t}) to obtain Fig. \ref{1d_omegaT}. Since in one-dimensional case the solutions for (\ref{eqn_1d_t}) has analytical forms \cite{slepian1961prolate}, directly using these solutions can also obtain the same result.} Nearly $N^{1D}$ eigenvalues are on the left side of the transition line, which tend to the same maximum value. Moreover, nearly all eigenvalues on the right side of the transition line tends to 0. Therefore, $N^{1D}$ is the asymptotic DoF of the signal space when $\Omega T \rightarrow \infty$. {\color{red}It is worthnoting that we can find the ``optimally concentrated signal" both from time and frequency domain, and the eigenvalue $\lambda$ will be the same. When beginning from $g(t) = (2\pi)^{-1}\int_{-\Omega}^{\Omega}G(\omega)e^{{\rm j}\omega t} {\rm d}\omega$, we have $\lambda = \frac{\int_{-T}^{T}|g(t)|^2{\rm d}t}{\int_{-\infty}^{\infty}|g(t)|^2{\rm d}t}$. Then we have 
 	\begin{equation}
 	\begin{aligned}
-		\int_{-\Omega}^{\Omega}D(\omega,\omega')G(\omega'){\rm d}\omega' = \lambda G(\omega),
+		\int_{-\Omega}^{\Omega}D(\omega,\omega')G_i(\omega'){\rm d}\omega' = \lambda_i G_i(\omega),
 	\end{aligned}
 	\label{eqn_1d_omega}
 	\end{equation}
@@ -507,8 +508,9 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	The integral equation corresponding to the two-dimensional eigenfunctions and eigenvalues is 
 	\begin{equation}
 		\begin{aligned}
-			\int_{\mathcal{R}}D({\bf x},{\bf x}')f({\bf x}'){\rm d}^2{\bf x}' = \lambda f({\bf x}),
+			\int_{\mathcal{R}}D({\bf x},{\bf x}'){\color{red}f_i({\bf x}')}{\rm d}^2{\bf x}' = {\color{red}\lambda_i f_i({\bf x})},
 		\end{aligned}
+		\label{eqn_2d_integral}
 	\end{equation}
 	and
 	\begin{equation}
@@ -554,9 +556,10 @@ Note that different from a discrete matrix, the dimension of a continuous Hilber
 	The asymptotic DoF is 
 	\begin{equation}
 		\begin{aligned}
-			N^{3D} = \sum_{i=1}^\infty \lambda_i = \int_{\mathcal{R}}D({\bf x},{\bf x}){\rm d}^3{\bf x} = \frac{V}{6\pi^2}k_0^3.
+			N^{3D} = \sum_{i=1}^\infty \lambda_i = \int_{\mathcal{R}}D({\bf x},{\bf x}){\rm d}^3{\bf x} = \frac{V}{6\pi^2}k_0^3,
 		\end{aligned}
 	\end{equation}
+	{\color{red} where $V$ is the volume of $\mathcal{R}$.}
 	
 	If the wavenumber domain constraint satisfies $k_1^2\leqslant k_x^2+k_y^2+k_z^2 \leqslant k_0^2$, similarly we have
 	\begin{equation}
@@ -728,6 +731,23 @@ $D_1$ excites the all possible modes that are below the frequency limit $w_0$, w
 
 It is also worthnoting that the integral operators mentioned above can be viewed as low-pass filters since they tend to keep the slow-varying components due to the smoothness of the kernels. Therefore, it is expected that when solving the concentration problem, the eigenfunctions that vary slower on the space domain will correspond to larger eigenvalues. According to {\bf Remark} \ref{remark_fDoF_eigenvalues}, these eigenfunctions serve as good electromagnetic bases since they are more important when constructing required transmitted fields compared to other eigenfunctions, which will be verified in the simulation parts.
 }
+
+{
+	\color{red}
+	\begin{remark}
+		(relationship between asymptotic and non-asymptotic DoF) In the above parts we have discussed the models and schemes to analyze and solve the concentration problem for non-asymptotic DoF. Although it is hard to quantitatively discuss the exact value of non-asymptotic DoF, which relies on numerical calculations and the error bound $\epsilon$ as in {\bf Definition} \ref{def_fDoF}, here we propose a conjecture whose generality remains unproven. More precisely, the non-asymptotic DoF with small $\epsilon$, although is obviously smaller than the asymptotic case that involves larger spatial and wavenumber constraint regions, will exceed the asymptotic case when both of them are averaged over the sizes of the spatial and wavenumber constraint regions. The reason is that observations confined to a finite region inherently exploit the structural characteristics of the field, which effectively convey partial information from outside the region. One observation of this phenomenon in one-dimensional time-frequency case has been shown in Fig. \ref{1d_omegaT}, in which the dot line (Cut-off transition) refers to the average DoF of asymptotic case. It can be observed that for finite $\Omega T$, the line has a tail at the right side of the Cut-off transition line, which is more obvious for smaller $\Omega T$. This tail means extra DoF above the average DoF when considering small $\epsilon$. For three-dimensional scenario in space-wavenumber domain we also provide a numerical case in Fig. \ref{3d_Vk}, which comes from the integral equation with kernel function (\ref{equ_ball}). It can be observed that the same phenomenon also exists in three-dimensional scenario, where considering average DoF over the sizes of the spatial and wavenumber constraint regions, the non-asymptotic case will exceed the asymptotic case. We have also found similar phenomenon when considering mutual information with a finite observation window in the time domain \cite{zhujieao22ISIT}.
+
+			\begin{figure}
+		\centering 
+		\includegraphics[width=0.7\textwidth]{figs/save_3d_different_Vk.pdf} 
+		\caption{\color{red} The eigenvalues of three-dimensional Slepian concentration problem when $V k_0^3$ increases.} 
+		\label{3d_Vk}
+	\end{figure}
+
+
+
+	\end{remark}
+}
    
 	In the above part we are analyzing the scenario where the direction of ${\bf k}$ is not restricted, which means that the incident wave to the receiver may have arbitrary direction, corresponding to general channel settings. Given a specific channel, the direction of the incident wave to the receiver may be constrained, which adds further restrictions on ${\bf k}$.  Specifically, new constraints ${\Omega}_1 \subset {\Omega}=\{\hat{\bf k}: \left\| \hat{\bf k} \right\|=1\}$ on $\hat{\bf k}$ can be introduced, which is determined by the concentration region of the electromagnetic field caused by the scattering channel. {\color{red} The restrictions on $k$ has been used in channel modeling schemes\cite{pizzo2022fourier}, as a tool to depict the wavenumber domain characteristics caused by the scatterers.
 	It has also been used for DoF analysis\cite{poon2005degrees}, where asymptotic conclusions about the channel DoF is obtained based on one-dimensional Slepian concentration problem. } In this paper, we can have the following transform in three dimensional space
@@ -895,10 +915,27 @@ Corresponding to \eqref{eqn_wavenumber_constraint3}, the concentrated functions 
 		\end{equation}
 		{\noindent} \rule[-10pt]{18cm}{0.05em}
 	\end{figure*}
+
+	{\color{red}
+	\begin{remark}
+		(relationship and differences between cases with different dimensions) After introducing and analyzing all the concentration problems based on one-dimensional, two-dimensional, three-dimensional and four dimensional cases, now we will discuss the relationship and differences between them. First of all, the one-dimensional case, although originally used in time-frequency domain, can be used in space-wavenumber domain considering only one dimension. In another word, this case corresponds to the model with ideal transceivers on a line in the spatial domain. In the wavenumber domain, two of the three variables $k_x$, $k_y$ and $k_z$ are ommitted. The constraint region in this case is the projection of the original constraint region in three-dimensional domain to only one dimension of it. The two-dimensional case is similar, which is not repeated here. It is easy to observe that some structural information is lost in such kind of projection. For example, we show the three different structures of constraint regions in wavenumber domain that have been discussed in Section \ref{subsec_3d_slepian} in previous subsections. These three structures will lead to different DoFs and sampling schemes in the spatial domain. However, when projecting them to the two-dimensional domain as formulated in (\ref{eqn_2d_integral}), all of them degenerate to the same disc, losing the information existed in the third dimension. Therefore, we claim that analyzing the concentration problem in three-dimensional space-wavenumber domain is better than lower dimensions, which preserves more information of the original electromganetic field. 
+
+		Besides the three-dimensional space-time domain, we further consider the time domain to extend the dimensions of the problem to four. By incorporating the time domain into the system model, it becomes possible to characterize the joint properties of electromagnetic waves across both space and time domains in a more unified manner. This enables the construction of time–space joint electromagnetic bases, which, in contrast to conventional designs that decouple space and time, may bring additional performance gains. The underlying reason lies in the dispersion relation from Maxwell's equations, which intrinsically couples the Fourier representation in the time domain with that in the space domain, thereby making the two domains inseparable in essence. It is interesting to find that the Minkowski spacetime interval $s^2 = c^2t^2 - \left\| {\bf x} \right\|^2$ exists in the four-dimensional integral kernel function (\ref{equ_kernel_expression}), which reflects the inherent compatibility of Maxwell’s equations with the framework of special relativity.
+
+
+			\begin{figure}
+		\centering 
+		\includegraphics[width=0.7\textwidth]{figs/Three_d_comparison.pdf} 
+		\caption{\color{red} Three different structures of constraint regions in wavenumber domain.} 
+		\label{Three_d_comparison}
+	\end{figure}
+	\end{remark}
+	}
 	
 
 	{\color{red}
 	\begin{remark}
+		(motivation and novelty of studying the DoF)
 		After the theoretic analysis of the DoF, we can now present the motivation and novelty of studying the DoF in the paper from the following two perspectives: 1) The degrees of freedom (DoF) of an electromagnetic field characterize the dimension of the functional space it spans, i.e., the minimum number of orthogonal base functions required for its representation. Therefor, the DoF analyzing framework can offer a more fundamental and physically intuitive criterion for determining the number of antennas required in array design to approach optimal system performance compared to mutual information or capacity analysis. 2) While capacity and mutual information analysis in existing works rely on a specific channel model, in this paper the fDoF analysis is an upperbound covering all kinds of channel conditions, which only relies on the characteristics of the transceivers and is different from the results obtained from capacity or mutual information analysis. We have also discussed the relationship between fDoF and cDoF which relies on a specific channel. Therefore, our analysis about DoF has provided some new insights compared to existing capacity or mutual information analysis. 
 	\end{remark}
 	}
@@ -974,7 +1011,7 @@ Corresponding to \eqref{eqn_wavenumber_constraint3}, the concentrated functions 
 	\label{different_sampling_scheme_merge}
 \end{figure}
 
-Finally we consider both the space and time domains to provide more general results for electromagnetic information theory. Noted that for wireless communication systems the time-harmonic assumption requires the periodicity of the electromagnetic field in the time domain, that is, the theoretical model is strictly satisfied only after the electromagnetic field becomes stationary. The above communication process will greatly reduce the efficiency of wireless communication and is not practical enough. Therefore, without the time-harmonic assumption, we can obtain a more general model for electromagnetic information theory, which better fits practical wireless communication processes. With the theoretical analysis, we plot the space-time patterns inspired by Slepian's concentration problem in Fig. \ref{fig_cdl_fit}. For ease of calculation, we bound the electromagnetic fields on one-dimensional space domain which corresponds to linear antenna array. These patterns have good orthogonality, shown in Fig. \ref{pattern_correlation}. Moreover, according to \eqref{eqn_min_f_approx} we know that these patterns can be used to construct arbitrary required electromagnetic fields in the source/destination regions with a given approximation error.
+Finally we consider both the space and time domains to provide more general results for electromagnetic information theory. Noted that for wireless communication systems the time-harmonic assumption requires the periodicity of the electromagnetic field in the time domain, that is, the theoretical model is strictly satisfied only after the electromagnetic field becomes stationary. The above communication process will greatly reduce the efficiency of wireless communication and is not practical enough. Therefore, without the time-harmonic assumption, we can obtain a more general model for electromagnetic information theory, which better fits practical wireless communication processes. With the theoretical analysis, we plot the space-time patterns inspired by Slepian's concentration problem in Fig. \ref{fig_cdl_fit}. For ease of calculation, we bound the electromagnetic fields on one-dimensional space domain which corresponds to linear antenna array. These patterns have good orthogonality, shown in Fig. \ref{pattern_correlation}. Moreover, according to \eqref{eqn_min_f_approx} we know that these patterns can be used to construct arbitrary required electromagnetic fields in the source/destination regions with a given approximation error. {\color{red} We can also observe that eigenfunctions that vary slower on the space domain correspond to larger eigenvalues, which fits our previous analysis.}
 
 	\begin{figure}[!t]
 	\setlength{\abovecaptionskip}{-0.0cm}
