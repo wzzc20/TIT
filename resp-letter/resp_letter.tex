@@ -167,7 +167,25 @@ Many thanks for the reviewer's valuable comment. $\{\lambda\}$ can be obtained b
 
 }}
 \begin{framed}
-	{\bf Section II}
+    {\bf Section III.A}
+
+\setcounter{equation}{0}
+
+Moreover, nearly all eigenvalues on the right side of the transition line tends to 0. Therefore, $N^{1D}$ is the asymptotic DoF of the signal space when $\Omega T \rightarrow \infty$. {\color{red}It is worth noting that we can find the ``optimally concentrated signal" both from time and frequency domains, and the eigenvalue $\lambda$ will be the same. When beginning from $g(t) = (2\pi)^{-1}\int_{-\Omega}^{\Omega}G(\omega)e^{{\rm j}\omega t} {\rm d}\omega$, we have $\lambda = \frac{\int_{-T}^{T}|g(t)|^2{\rm d}t}{\int_{-\infty}^{\infty}|g(t)|^2{\rm d}t}$. Then we have 
+	\begin{equation}
+		\begin{aligned}
+			\int_{-\Omega}^{\Omega}D(\omega,\omega')G_i(\omega'){\rm d}\omega' = \lambda_i G_i(\omega),
+		\end{aligned}
+		\label{eqn_1d_omega}
+	\end{equation}
+	and
+	\begin{equation}
+		\begin{aligned}
+			D(\omega,\omega') = (2\pi)^{-1}\int_{-T}^T e^{-{\rm j}t(\omega-\omega')}{\rm d}t = \frac{\sin(T(\omega-\omega'))}{\pi(\omega-\omega')}.
+		\end{aligned}
+	\end{equation}
+	It is easy to verify that the eigenvalues in (18) and (21) are the same.
+}
 
     
 \end{framed}
@@ -182,9 +200,9 @@ Thanks for the reviewer for pointing out this problem. We have corrected this is
 }}
 
 \begin{framed}
-	{\bf Section III.A}
+	{\bf Section III.C}
 
-  
+  By solving this integral equation we obtain the eigenvalues that determine the number of base functions required to construct the received electric field, which can be viewed as the dimension of the subspace constructed by the possible received electric field. To be more specific, the eigenvalues determine the {\color{red}``importance"} of the eigenfunctions as bases of the electromagnetic fields which satisfy the concentration conditions.
 
 \end{framed}
 
@@ -196,10 +214,20 @@ Thanks for the reviewer's valuable suggestions. We have added references that ha
 }}
 
 \begin{framed}
-	{\bf Section IV.A}
-
-    
+	{\bf Section III.C}
+	
+	In the above part we are analyzing the scenario where the direction of ${\bf k}$ is not restricted, which means that the incident wave to the receiver may have arbitrary direction, corresponding to general channel settings. Given a specific channel, the direction of the incident wave to the receiver may be constrained, which adds further restrictions on ${\bf k}$.  Specifically, new constraints ${\Omega}_1 \subset {\Omega}=\{\hat{\bf k}: \left\| \hat{\bf k} \right\|=1\}$ on $\hat{\bf k}$ can be introduced, which is determined by the concentration region of the electromagnetic field caused by the scattering channel. {\color{red} The restrictions on $k$ have been used in channel modeling schemes [47], as a tool to depict the wavenumber domain characteristics caused by the scatterers.
+		It has also been used for DoF analysis [26], where asymptotic conclusions about the channel DoF are obtained based on one-dimensional Slepian concentration problem. } 
+  
 \end{framed}
+
+{\color{blue}
+	{\bf References:}
+	
+	[26] A. S. Poon, R. W. Brodersen, and D. N. Tse, “Degrees of freedom in multiple-antenna channels: A signal space approach,” {\it IEEE Trans. Inf. Theory}, vol. 51, no. 2, pp. 523–536, Feb. 2005.
+
+[47] A. Pizzo, L. Sanguinetti, and T. L. Marzetta, “Fourier plane-wave series expansion for holographic MIMO communications,” {\it IEEE Wireless Commun.}, vol. 21, no. 9, pp. 6890–6905, Sep. 2022.
+}
 
 {\color{blue} \textbf{Authors}: Thank you for your valuable time and efforts to review this paper. Your comments and suggestions have helped us improve our work.
 	\\
@@ -241,197 +269,404 @@ We appreciate the reviewer's positive evaluations on our work. We have tried our
 }}
 
 \begin{framed}
-    {\bf Section II}
+    {\bf Section I}
 
 	\setcounter{equation}{0}
+	
+\quad The existing research directions of EIT includes channel modeling schemes [11]-[13], DoF analysis [14]-[16], mutual information and capacity analysis [17]-[19], etc.
+Among these directions, DoF analysis is one of the most important parts, since it provides the upper bound of usable data streams and shows the required number of antennas, which guides the design of practical antenna arrays. {\color{red}To be more specific, the DoF of an electromagnetic field characterizes the dimension of the functional space it spans, i.e., the minimum number of orthogonal base functions required for its representation. Compared to mutual information or capacity analysis, the DoF analyzing framework offers a more fundamental and physically intuitive criterion for determining the number of antennas required in array design to approach optimal system performance. }
 
-   
+{\bf Section II}
+
+	{\bf \color{red} {\it \bf E.} Relationship between DoF, mutual information and capacity for EIT}
+	
+	{\color{red}
+	
+	\quad In the previous part, we have provided mathematical definitions about the functional DoF of electromagnetic fields (fDoF) and the channel DoF which further considers channel conditions between the transceivers (cDoF). Moreover, we have provided the analysis of the relationship between fDoF and cDoF. In this part, we will have some discussions about the relationship between the defined DoF and other concepts like mutual information and capacity, which have already been widely discussed in the research field of EIT.
+	
+	\quad As shown in Sec. II-D, the proposed fDoF provides an upperbound for all kinds of channel conditions. Therefore, we can design the deployment strategies of transceivers based on the obtained fDoF, which has the maximum redundancy. To be more specific, no matter how the channel condition changes, the designed system can capture all the possible DoF in the system. The relationship between fDoF and cDoF is explained in {\bf Theorem} 1. When considering a specific channel, cDoF can be used and has a deep connection to the mutual information and capacity. In [19] we have expressed the mutual information between random electromagnetic fields as $I(E;Y) = \sum_i{\rm log}(1+\frac{\lambda_i}{\sigma^2})$ based on Mercer' s theorem [28]. It can be observed that the mutual information can be expressed as the summation of infinite terms derived from the statistical characteristics of the received fields, which are determined by the channel. Each item in the expression of mutual information corresponds to one degree of freedom, where different $\lambda$ reflecting the criticality weight of the corresponding sub-channel, as discussed in Definition 2.
+	
+	\quad When further considering channel capacity, we shall fix the field distribution which maximizes the mutual information to obtain the capacity based on continuous electromagnetic fields and channels. This procedure is an extension from the discrete matrices to continuous operators, represented as $P$ in Definition 2. For discrete matrices we have $C = \underset{K_J}{\rm max}{\rm logdet}\frac{HK_JH^{\rm H}+K_N}{K_N}$ with respect to ${\rm Tr}(K_J) \leqslant P$. By using singular value decomposition and Karush–Kuhn–Tucker (KKT) theorem, we can obtain the maximum mutual information which is the capacity. For operators, the optimization problem can be solved by the extended KKT theorem [29] for countably infinite variables. The result is in the form of the water-filling method, where the insignificant subchannels are discarded, leaving only the channels corresponding to large eigenvalues. This procedure is the same as what we have done in the definition of DoF. 
+	
+	\quad In all, the proposed fDoF has and indirect relation with mutual information and capacity, which is established by cDoF. Besides, all these concepts used in EIT are based on continuous electromagnetic fields which are in spaces with infinite dimensions. This property, distinct from finite-dimensional matrices, entails the necessity of filtering out insignificant basis functions or subchannels based on the error tolerance threshold $\epsilon$. 
+	
+}
+
 \end{framed}
+
+{\color{blue}
+	{\bf References:}
+	
+	[19] Z. Wan, J. Zhu, Z. Zhang, L. Dai, and C.-B. Chae, “Mutual information for electromagnetic information theory based on random fields,” {\it IEEE Trans. Commun.}, vol. 71, no. 4, pp. 1982–1996, Feb. 2023.
+	
+	[28] J. Mercer, “Functions of positive and negative type, and their connection with the theory of integral equations,” {\it Philos. Trans. Roy. Soc. London}, vol. 209, no. 441-458, pp. 415–446, Jan. 1909.
+	
+	[29] M. Bachir, A. Fabre, and S. Tapia-Garcia, “Finitely determined functions,” {\it Advances in Operator Theory}, vol. 6, no. 2, pp. 1–24, 2021.
+}
 
 \textbf{Reviewer 2:}
 2. Upon reading half of the paper, it seems that the connection between the presented materials and information theory is lacking. The reviewer suggests reorganizing the paper and introducing relevant background on EIT or channel model, problem formulation, etc., in Section II first. For example, the authors could clarify the relation between the DoF and capacity in EIT.
 
 {\color{blue}{\textbf{Authors: } 
-Many thanks for the reviewer's valuable comment. Our equation here comes from the scalar wave equation as adopted by [20-24]. We agree with the reviewer that our derivation process in the paper is not clear and strict enough, where some items in the electromagnetic equations are ignored without discussion when using the scalar wave equation. We now begin from the vector wave equation form in [19], which includes the missing considerations when using scalar wave equation.
+Many thanks for the reviewer's valuable comment. We deeply agree with the reviewer that the paper needs to be reorganized. 
+We have reversed {\bf Section II} and {\bf Section III} in the original paper, which means that the problem formulation and DoF definition parts are introduced before Slepian concentration problem. 
+
+We have also added a new subsection as {\bf Section II.A} which formulates the basic electromagnetic model for EIT according to the suggestion of the reviewer. This subsection helps strengthen the background and channel model for EIT, and shows the physical restrictions on the electromagnetic field, which will be used when analyzing the DoF.
+
+For the relation between the DoF and capacity in EIT, we have added a new subsection as {\bf Section II.E}, which clarifies the relation between the DoF and capacity in EIT.
 
 \quad Detailed revisions are shown in the following box:
 
 }}
+\begin{framed}
+	{\bf Section II. {\color{red} Basic electromagnetic model and DoF definition for EIT}}
+	
+	{\color{red} 
+	\quad	In this section we will first introduce the basic model of EIT from the electromagnetic perspective. Based on the electromagnetic model we will show the physical constraints of the transceivers, which motivates the analysis of DoF upperbound of a wireless communication system. Then we will provide mathematical definitions for the DoF of electromagnetic fields. We will discuss the DoF of electromagnetic fields and the DoF considering channel conditions separately, and then provide a theorem showing the relationship between them. Finally, we will discuss the relationship between DoF, mutual information, and capacity, which shows how our research result in this paper is related to other works in the research field of electromagnetic information theory.
+	}
+
+	\setcounter{equation}{0}
+	
+	{\bf {\color{red}A. Electromagnetic model}}
+	
+	{\color{red}
+	\quad In this part, we will introduce the electromagnetic laws, which are the basic constraints for wireless communication systems. Maxwell's equations, which depict how electric and magnetic fields are generated by charges, currents, and changes of the fields, are shown as follows [24]
+	
+	\begin{subequations}
+		\begin{align} 
+			& \nabla \cdot  (\epsilon({\bf r}) {\bf E}({\bf r},t)) = \rho({\bf r},t), \label{eqn_1a}\\
+			& \nabla \cdot (\mu({\bf r}) {\bf H}({\bf r},t)) = 0,\\
+			&\nabla \times {\bf E}({\bf r},t) = -\frac{\partial \mu({\bf r}) {\bf H}({\bf r},t)}{\partial t}, \label{eqn_1c}\\
+			& \nabla \times {\bf H}({\bf r},t) = \frac{ \partial \epsilon({\bf r}) {\bf E}({\bf r},t)}{\partial t}+{\bf J}({\bf r},t) \label{eqn_1d}, 
+		\end{align}
+	\end{subequations}
+	
+	\quad When considering electromagnetic wave propagation in free space, we can assume that $\epsilon({\bf r}) = \epsilon_0$ and $\mu({\bf r}) = \mu_0$ are constant parameters as in vacuum. Then we have
+	\begin{subequations}
+		\begin{align} 
+			& \nabla \cdot  {\bf E}({\bf r},t) = \frac{\rho({\bf r},t)}{\epsilon_0}, \label{eqn_2a}\\
+			& \nabla \cdot {\bf H}({\bf r},t) = 0,\\
+			&\nabla \times {\bf E}({\bf r},t) = -\frac{\partial \mu_0 {\bf H}({\bf r},t)}{\partial t}, \label{eqn_2c}\\
+			& \nabla \times {\bf H}({\bf r},t) = \frac{ \partial \epsilon_0 {\bf E}({\bf r},t)}{\partial t}+{\bf J}({\bf r},t) \label{eqn_2d}, 
+		\end{align}
+		\label{eqn_2}
+	\end{subequations}
+	If we further assume a source-free region, we have $\rho$ and ${\bf J}$ equal to 0. Then by performing $\nabla\times $ on (\ref{eqn_2c}), substituting it into (\ref{eqn_2d}), applying (\ref{eqn_2a}), and using the identity $\nabla\times(\nabla\times {\bf E}) = \nabla(\nabla\cdot {\bf E})-\nabla^2 {\bf E}$, we can arrive at
+	\begin{equation}
+		\begin{aligned}
+			\nabla^2 {\bf E}({\bf r},t) - \epsilon_0 \mu_0 \frac{\partial^2 {\bf E}({\bf r},t)}{\partial t^2} = 0. 
+		\end{aligned}
+		\label{eqn_wave_equation_with_no_source}
+	\end{equation}
+	By substituting plane wave form ${\bf E}({\bf r},t) = {\bf E}_0 e^{{\rm j}({\bf k}\cdot {\bf r}-\omega t)}$ into the wave equation (\ref{eqn_wave_equation_with_no_source}), we can arrive at
+	\begin{equation}
+		\left\|  {\bf k} \right\|^2 = k^2 = \epsilon_0 \mu_0 \omega^2 = \frac{\omega^2}{c^2},
+		\label{eqn_dispersion_relation}
+	\end{equation}
+	which is the dispersion relation of electromagnetic fields in free space. An intuitive interpretation of this relation is that electromagnetic waves experience $\frac{|\omega|}{2\pi}$ circles in unit time and $\frac{|k|}{2\pi}$ circles traveling in unit length. Since electromagnetic waves travel in light speed $c$ in vacuum, we can directly obtain the dispersion relation.
+	
+	\quad We can also view the dispersion relation from the Green's function perspective. Consider two arbitrary regions $V_{\rm s}$ and $V_{\rm r}$ as the source and the destination for wireless communications. The Green's function ${\bf{G}} ({\bf{r}},{\bf{s}})\in \mathbb{C}^{3\times 3}$ is introduced to solve the vector wave equation. Consider the electromagnetic wave on a given frequency point $\omega$ (time-harmonic) [25], the whole electromagnetic field can be viewed as the superposition of the single-frequency waves at all possible frequency points. Then we arrive at the vector wave equation from (\ref{eqn_2}) as follows
+	\begin{equation}
+		\nabla  \times \nabla  \times {\bf{E}}\left( {\bf{r}} \right) - {\omega ^2 \mu_0 \epsilon_0}{\bf{E}}\left( {\bf{r}} \right) = {\rm j}\omega {\mu _0}{\bf{J}}\left( {\bf{r}} \right).
+		\label{VWE}
+	\end{equation}
+	From the linearity nature of (\ref{VWE}), the Green's function is introduced to solve the vector wave equation and derive the input-output relationship of wireless communication system enabled by electromagnetism. 
+	Utilizing the Green's function, the electric field ${\bf{E}}({\bf{r}})$ can be expressed by  
+	\begin{equation}
+		{\bf{E}}({\bf{r}}) = \int_{{V_s}} {\bf{G}} ({\bf{r}},{\bf{s}}){\bf{J}}({\bf{s}}){\rm d}{\bf{s}},\quad {\bf{r}} \in {V_r},
+		\label{VWE_Green}
+	\end{equation}
+	where the Green's function obeys the following equation
+	\begin{equation}
+		\nabla_{\bf r}  \times \nabla_{\bf r}  \times {\bf{G}}\left( {\bf{r}},{\bf {s}} \right) - {\omega ^2 \mu_0 \epsilon_0}{\bf{G}}\left( {\bf{r}},{\bf {s}} \right) = {\rm j}\omega {\mu _0}\delta\left( {\bf{r}}-{\bf {s}} \right).
+		\label{VWE_Green_1}
+	\end{equation}
+	By performing Fourier transform on both sides of (\ref{VWE_Green_1})\cite{poon2005degrees}, we can obtain the Green's function expressed in the wavenumber domain as 
+	\begin{equation}
+		{\bf G}({\bf k},{\bf s}) = \frac{{\rm j}\omega\mu_0 e^{-{\rm j}{\bf k}\cdot {\bf s}}}{k^2-\omega^2/c^2}\left({\bf I} - \hat{\bf k}\hat{\bf k}^{\rm T}  \right),
+		\label{eqn_G_in_wavenumber_form}
+	\end{equation}
+	where $\hat{\bf k} = {\bf k}/k$.
+	
+	\quad From (\ref{eqn_G_in_wavenumber_form}) we can find that there are poles at $k^2 = \omega^2/c^2$ in the wavenumber domain (Fourier transform of space domain) expression of Green's function, which means that the components at $k^2 = \omega^2/c^2$ can spread far away and other components will decay with distance. Therefore, in the wireless communication system with large distances between transceivers, we can use $k^2 = \omega^2/c^2$ as a basic physical constraint for the electromagnetic waves. 
+	
+	
+}
+
+{\bf \color{red} {\it \bf E.} Relationship between DoF, mutual information and capacity for EIT}
+
+{\color{red}
+	
+	\quad In the previous part, we have provided mathematical definitions about the functional DoF of electromagnetic fields (fDoF) and the channel DoF which further considers channel conditions between the transceivers (cDoF). Moreover, we have provided the analysis of the relationship between fDoF and cDoF. In this part, we will have some discussions about the relationship between the defined DoF and other concepts like mutual information and capacity, which have already been widely discussed in the research field of EIT.
+	
+	\quad As shown in Sec. II-D, the proposed fDoF provides an upperbound for all kinds of channel conditions. Therefore, we can design the deployment strategies of transceivers based on the obtained fDoF, which has the maximum redundancy. To be more specific, no matter how the channel condition changes, the designed system can capture all the possible DoF in the system. The relationship between fDoF and cDoF is explained in {\bf Theorem} 1. When considering a specific channel, cDoF can be used and has a deep connection to the mutual information and capacity. In [19] we have expressed the mutual information between random electromagnetic fields as $I(E;Y) = \sum_i{\rm log}(1+\frac{\lambda_i}{\sigma^2})$ based on Mercer' s theorem [28]. It can be observed that the mutual information can be expressed as the summation of infinite terms derived from the statistical characteristics of the received fields, which are determined by the channel. Each item in the expression of mutual information corresponds to one degree of freedom, where different $\lambda$ reflecting the criticality weight of the corresponding sub-channel, as discussed in Definition 2.
+	
+	\quad When further considering channel capacity, we shall fix the field distribution which maximizes the mutual information to obtain the capacity based on continuous electromagnetic fields and channels. This procedure is an extension from the discrete matrices to continuous operators, represented as $P$ in Definition 2. For discrete matrices we have $C = \underset{K_J}{\rm max}{\rm logdet}\frac{HK_JH^{\rm H}+K_N}{K_N}$ with respect to ${\rm Tr}(K_J) \leqslant P$. By using singular value decomposition and Karush–Kuhn–Tucker (KKT) theorem, we can obtain the maximum mutual information which is the capacity. For operators, the optimization problem can be solved by the extended KKT theorem [29] for countably infinite variables. The result is in the form of the water-filling method, where the insignificant subchannels are discarded, leaving only the channels corresponding to large eigenvalues. This procedure is the same as what we have done in the definition of DoF. 
+	
+	\quad In all, the proposed fDoF has and indirect relation with mutual information and capacity, which is established by cDoF. Besides, all these concepts used in EIT are based on continuous electromagnetic fields which are in spaces with infinite dimensions. This property, distinct from finite-dimensional matrices, entails the necessity of filtering out insignificant basis functions or subchannels based on the error tolerance threshold $\epsilon$. 
+	
+}
+
+    
+\end{framed}
+
+{\color{blue}
+	{\bf References:}
+	
+	[19] Z. Wan, J. Zhu, Z. Zhang, L. Dai, and C.-B. Chae, “Mutual information for electromagnetic information theory based on random fields,” {\it IEEE Trans. Commun.}, vol. 71, no. 4, pp. 1982–1996, Feb. 2023.
+	
+	[24] D. J. Griffiths, Introduction to Electrodynamics. American Association of Physics Teachers, 2005.
+	
+	[25] F. K. Gruber and E. A. Marengo, “New aspects of electromagnetic information theory for wireless and antenna systems,” {\it IEEE Trans. Antennas Propag.}, vol. 56, no. 11, pp. 3470–3484, Nov. 2008.
+	
+	[28] J. Mercer, “Functions of positive and negative type, and their connection with the theory of integral equations,” {\it Philos. Trans. Roy. Soc. London}, vol. 209, no. 441-458, pp. 415–446, Jan. 1909.
+	
+	[29] M. Bachir, A. Fabre, and S. Tapia-Garcia, “Finitely determined functions,” {\it Advances in Operator Theory}, vol. 6, no. 2, pp. 1–24, 2021.
+}
+
+\textbf{Reviewer 2:}
+3. Please provide a precise mathematical definition for DoF and orthogonal patterns for the electromagnetic fields at the beginning.
+
+{\color{blue}{\textbf{Authors: } 
+Thanks for the reviewer's valuable comment. We have reversed {\bf Section II} and {\bf Section III}. Then we put the mathematical definition for DoF of electromagnetic fields in {\bf Section II.B} and {\bf Section II.C} as {\bf Definition 1} and {\bf Definition 2}. In {\bf Section II}, the orthogonal basis refers to any electromagnetic field modes that satisfy {\bf Definition 1} and {\bf Definition 2}. In {\bf Section III}, this basis will be further specialized to the eigenfunctions obtained from the Slepian concentration problem.
+
+\quad Detailed revisions are shown in the following box:
+}}
+
 \begin{framed}
 	{\bf Section II}
 
-	\setcounter{equation}{0}
-
-    \quad Maxwell's equations are the fundamental physical laws of the electromagnetic system. For the characteristics of the scattering system, we can consider the scatterers as spatial non-uniformity of the electromagnetic characteristics like permittivity $\epsilon$ and permeability $\mu$. {\color{red}We adopt the time-harmonic assumption which assumes that the electromagnetic waves oscillates on a single frequency point. Then we have ${\bf E}({\bf r},t) = {\bf E}({\bf r})e^{-{\rm j}\omega t}$, and the partial derivative $\partial/\partial t$ can be replaced by $-{\rm j}\omega$ [26].
-Then from the Maxwell's equations we have}
-\begin{subequations}
-	\begin{align} 
-		&\nabla \times {\bf E}({\bf r}) = {\rm j}\omega \mu({\bf r}) {\bf H}({\bf r}), \label{maxwell_1}\\
-		& \nabla \times {\bf H}({\bf r}) = -{\rm j}\omega \epsilon({\bf r}) {\bf E}({\bf r})+{\bf J}({\bf r}),  \label{maxwell_2}\\
-		& \nabla \cdot  (\epsilon({\bf r}) {\bf E}({\bf r})) = \rho({\bf r}),\\
-		& \nabla \cdot (\mu({\bf r}) {\bf H}({\bf r})) = 0,
-	\end{align}
-\end{subequations}
-where $\epsilon({\bf r})$, ${\mu}({\bf r})$ and $\rho({\bf r})$ represents the permittivity, permeability and charge density at the position ${\bf r}$. In homogeneous media, $\epsilon({\bf r})$ and ${\mu}({\bf r})$ will be constant, which is often used in light-of-sight channel modeling in the free space. Now we are considering inhomogeneous media, which can express the electromagnetic characteristics of scattering fields [19]. 
-
-{\color{red}
-	\quad By performing $\nabla\times$ on (1a), we have
-	\begin{equation}
-		\nabla \times \mu({\bf r})^{-1} \nabla \times {\bf E}({\bf r}) = \nabla \times ({\rm j}\omega{\bf H}({\bf r})),
-	\end{equation}
-	 which leads to the corresponding vector wave equation
-	 \begin{equation}
-	 	\nabla \times \mu({\bf r})^{-1} \nabla \times {\bf E}({\bf r}) - \omega^2 \epsilon({\bf r})  {\bf E}({\bf r}) = {\rm j}\omega {\bf J}({\bf r}),
-	 \end{equation}
-	 where $k({\bf r}) = \omega \sqrt{\mu({\bf r})\epsilon({\bf r})}$ represents the inhomogeneous media over a finite domain $V$ according to [19], and ${\rm j}\omega {\bf J}({\bf r})$ represents the source field. Outside the domain $V$, the wavenumber $k({\bf r})$ equals $k_0 = \omega\sqrt{\mu_0\epsilon_0}$.
-	 By subtracting $\nabla \times \mu_0 \nabla  \times {\bf E}({\bf r})- \omega^2 \epsilon_0 {\bf E}({\bf r})$ from both sides and applying the Green's function, the received electric field can be expressed by
-\begin{equation}
-	\begin{aligned} 
-		{\bf E}({\bf r}) &= {\rm j}\omega\int_{V_s} {\bf G}({\bf r},{\bf r}')\mu_0{\bf J}({\bf r}'){\rm d}{\bf r}' 
-		+ \int_{V} {\bf G}({\bf r},{\bf r}')(k^2({\bf r}')-k_0^2) 
-		{\bf E}({\bf r}'){\rm d}{\bf r}',
-	\end{aligned}
-	\label{equ_scattering_field}
-\end{equation}
-where $V_s$ is the source region which generates the signal, ${\bf E}({\bf r}')$ is the induced electric field in the inhomogeneous regions in the space, and the dyadic Green's function ${\bf G}$ is the solution of the equation
-\begin{equation}
-	\begin{aligned} 
-		\nabla \times \mu_0^{-1} \nabla \times {\bf G}({\bf r},{\bf r}') - \omega^2 \epsilon_0  {\bf G}({\bf r},{\bf r}') = \mu_0^{-1} {\bf I} \delta({\bf r}-{\bf r}').
-	\end{aligned}
-\end{equation}
-Then, we can obtain the Green's function as ${\bf G}({\bf r},{\bf r}') = \frac{1}{{4\pi }} \left( {{\bf{I}} + \frac{{{\nabla _{\bf{r}}}\nabla _{\bf{r}}^{\rm{H}}}}{{{\kappa_0 ^2}}}} \right) \frac{{{e^{{\rm{j}}\kappa_0 \left\| {{\bf{r}} - {\bf{r}'}} \right\|}}}}{{\left\| {{\bf{r}} - {\bf{r}'}} \right\|}} $, which can be further expressed by [27]:
-\begin{equation}
-	\begin{aligned}
-		{\bf{G}}({\bf{r}},{\bf{r}'}) =& \frac{1}{{4\pi }}\frac{{{e^{{\rm{j}}\kappa_0 \left\| {{\bf{r}} - {\bf{r}'}} \right\|}}}}{{\left\| {{\bf{r}} - {\bf{r}'}} \right\|}}\Bigg[\left( {{\bf{I}} - {\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}}} \right) + \frac{{\rm j}}{2\pi \left\| {{\bf{r}} - {\bf{r}'}} \right\| /\lambda}\left( {\bf I}-3{\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}} \right) \\&-\frac{1}{(2\pi\left\| {{\bf{r}} - {\bf{r}'}} \right\|/\lambda )^2 }\left( {\bf I}-3{\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}}  \right) \Bigg] [{\rm m}^{-1}],
-		\label{Green}
-	\end{aligned}
-\end{equation}
-where ${\bf{\hat p}} = \frac{{\bf{r}} - {\bf{r}'}}{{\left\| {\bf{r}} - {\bf{r}'} \right\|}}$.
-Here we assume that $\left\| {{\bf{r}} - {\bf{r}'}} \right\|/\lambda \gg 1$, which means that the receiver is in far-field of the scatterer's microstructure and holds true in general wireless communication scenarios [28]. Then, we can omit the items containing powers of $\frac{1}{\left\| {{\bf{r}} - {\bf{r}'}} \right\|/\lambda}$. Since ${\rm tr}({\bf I}-{\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}})({\bf I}-{\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}})^{\rm H} = 2$ is a constant, the average power of the electromagnetic field does not depend on the direction ${\bf{\hat p}}$ if the energy of the source current is equally distributed in all polarization directions. Then for simplicity in this paper we reduce the vector wave field to scalar wave field showing the power of electric field averaged on all polarization directions\footnote{\color{red}Physically if we consider the electromagnetic fields on a specific polarization direction $\hat{\bf a}$, an extra factor $\hat{\bf a}({\bf{I}} - {\bf{\hat p}}{{{\bf{\hat p}}}^{\rm{H}}})\hat{\bf a}^{\rm H}$ should be added.}. We have
-\begin{equation}
-	\begin{aligned} 
-		E({\bf r}) =& {\rm j}\omega\mu_0\int_{V_s} g({\bf r},{\bf r}')J({\bf r}'){\rm d}{\bf r}' + \int_{V} g({\bf r},{\bf r}')(k^2({\bf r}')-k_0^2) 
-		E({\bf r}'){\rm d}{\bf r}',
-	\end{aligned}
-	\label{equ_scattering_field_scalar}
-\end{equation}		
-where $g({\bf r},{\bf r}') = \frac{1}{2\pi}\frac{e^{{\rm j}k_0\| {\bf r}-{\bf r}' \|}}{\|{\bf r}-{\bf r}' \|}$.
-}
-The equation (\ref{equ_scattering_field_scalar}) is an extension from the 2-dimensional case in [29]. Here we can view the first item in (\ref{equ_scattering_field}) as the line-of-sight component of the field which is fixed and well-studied. Then we will focus on the second item in (\ref{equ_scattering_field}) which highly relies on the characteristics of the inhomogeneity of the space. The inhomogeneity of the space depends on the complicated factors such as surface structure and material properties of the medium which are hard to analytically model and may change over time. Therefore, a statistical model will be more suitable to depict the characteristics of the field than deterministic modeling scheme. 
-\end{framed}
-
-\textbf{Reviewer 2:}
-The field inside the scattering integral is the 'internal' field generated by the field incident on the object. Estimation of the internal field is the hardest part of scattering problems. In Eq. 5, the authors suppose impulse spatial autocorrelations of the field induced in the scattering object. Using this approximation, all the scattering characteristics of the formula are lost, and the model becomes an electromagnetic 'source', and some mathematical approximations substitute the physics of the problem. This is fine, but in some way, all the discussion before is 'lost' when the authors arrive at Eq. 5.
-
-{\color{blue}{\textbf{Authors: } 
-Thanks for the reviewer's valuable comment. Choosing impulse spatial correlations is mainly for mathematical simplicity, and it has also been used in several existing papers, including [31-33]. According to the reviewer's suggestion, we list the different modeling schemes of the spatial correlation of the scattering field in the paper to better explain our modeling assumptions.
-
-\quad Detailed revisions are shown in the following box:
-}}
-
-\begin{framed}
-	{\bf Section III.A}
-
-    To derive a closed-form expression of the channel model we need to have some assumptions on the scattering field to do simplifications on (8). {\color{red} Considering the uncertainty of the inhomogeneity of the space, simplified models need to be used for the field correlation on the scatter surfaces for ease of analysis. In the literature, some models have been already proposed. For example, delta function type of field spatial correlation is discussed in [31], [32] and [33], which implies an ideal but mathematically friendly assumption that the material properties are varying instantaneously in the spatial domain. A more complex model like exponential type of field spatial correlation is discussed in [34]. Angular delta function as the spectrum of the field is proposed in [35]. For simplicity, we adopt delta function as the spatial correlation of the fields on the scattering surface, leading to $\mathbb{E}\left[ E({\bf r}_1')E^{*}({\bf r}_2') \right] = \beta \delta({\bf r}_1'-{\bf r}_2')$.}
+    {\color{red}
+    	{\bf{B. DoF of electromagnetic fields}}
+    	
+    	\quad As is shown in (\ref{eqn_dispersion_relation}), there are some physical restrictions that the electromagnetic fields should obey in wireless communication systems. These restrictions relate to time, frequency, space, and wavenumber domain. All possible electromagnetic fields considering these restrictions span a Hilbert space whose dimension is the number of basis needed to express an arbitrary field in the space. 
+    	
+    	\quad Note that, unlike a discrete matrix, the dimension of a continuous Hilbert space may be infinite. However, in practical communication tasks, using an infinite number of base functions, which corresponds to infinite electromagnetic modes, is impossible and often unnecessary. The reason is that only a few base functions contribute a lot to the field reconstruction, while the remained base functions can be discarded with small loss of precision. We will give a mathematical definition of the DoF based on the above discussion and verify its rationale in the following sections of the paper. 
+    }
+    
+    \begin{definition}
+    	\label{def_fDoF}
+    	(functional DoF) Let $\mathcal{H}$ be a Hilbert space and $\{f_i\}_{i=1}^n \in \mathcal{H}$ be a set of orthogonal base functions. If for arbitrary function $f \in \mathcal{H}$ that satisfies $\left\| f \right\|=1$, there always exists a set of numbers $a_i$ that 
+    	$\left\| f-\sum_{i=1}^n a_i f_i  \right\| \leqslant \epsilon$. The minimum $n$ that satisfies the above conditions is the functional DoF of $\mathcal{H}$ with error $\epsilon$, i.e.,
+    	\begin{equation}
+    		\mathsf{fDoF}_{\epsilon} (\mathcal{H}) = {\rm min}\{ n: \underset{\mathcal{H}_n \subset \mathcal{H}}{\rm inf} \sup_{f: \left\| f \right\|=1} \inf_{g \in \mathcal{H}_n} \left\| f-g \right\| \leqslant \epsilon  \},
+    	\end{equation}
+    	where $\mathcal{H}_n$ is an $n$-dimensional subspace of $\mathcal{H}$.
+    \end{definition}
+    
+    {\color{red}
+    	{\bf{C. DoF of electromagnetic fields considering channel condition}}
+    	
+    	\quad In this part we will further provide the definition of the DoF of continuous electromagnetic fields considering a specific channel as follows
+    }
+    \begin{definition}
+    	\label{def_cDoF}
+    	(channel DoF) Let $\mathcal{H}_{\rm t}$ and $\mathcal{H}_{\rm r}$ be two Hilbert spaces and $P:\mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ be an operator. Let $\{g_i\}_{i=1}^{+\infty}$ and $\{f_i\}_{i=1}^{+\infty}$ be a set of orthogonal bases for $\mathcal{H}_{\rm t}$ and $\mathcal{H}_{\rm r}$ separately. Let $\{P_i\}_{i=1}^n: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ be a set of rank-1 operators. 
+    	If for arbitrary $g \in \mathcal{H}_{\rm t}$ that satisfies $\left\| g \right\|=1$, there always exists a set of numbers $b_i$ that satisfies $\left\| Pg-\sum_{i=1}^{n} b_iP_ig  \right\| \leqslant \epsilon$. The minimum $n$ that satisfies the above conditions is the channel DoF of the operator $P: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}$ with error $\epsilon$, i.e., 
+    	\begin{equation}
+    		\begin{aligned}
+    			\mathsf{cDoF}_{\epsilon} (\mathcal{H}_{\rm t},\mathcal{H}_{\rm r},P) =& {\rm min}\{ n: \underset{\{P_i\}_{i=1}^n: \mathcal{H}_{\rm t} \rightarrow \mathcal{H}_{\rm r}}{\rm inf} \sup_{g: \left\| g \right\|=1} \inf_{\{b_i\}_{i=1}^n} \left\| Pg-\sum_{i=1}^{n} b_iP_ig  \right\| \leqslant \epsilon  \}.
+    		\end{aligned}
+    	\end{equation}
+    \end{definition}
 
 \end{framed}
 
 \textbf{Reviewer 2:}
-In Lemma 2 the distance d depends on $(r_s^2+r_m^2)$. The source and scattering objects represent two field sources whose global dimension is $(r_s+r_m)$. Consequently, one would expect d to depend on $(r_s+r_m)^2$. Please check the statement.
+4. A handful of notations have not been clearly defined. For example,
 
 {\color{blue}{\textbf{Authors: } 
-Thanks to the reviewer for pointing out this problem. We have checked the corresponding analysis. When we do simplification, some items are wrongly ignored. Then we revise the corresponding parts.
+Thanks to the reviewer for pointing out this problem. The detailed examples are not correctly shown in the system. We have rechecked the notations in the paper and added a series of notations in the Notation part in {\bf Section I}.
+
  Detailed revisions are shown as in the following box: 
 }}
 \begin{framed}
-    {\bf Section IV. C}
+    {\bf Section I}
 
-    {\bf Lemma 2}(Extension of Rayleigh distance considering scatterer size)
-        The size of scatterer can be neglected when $r_{\rm s} \leqslant \frac{\lambda}{16}$ and {\color{red}$d \leqslant \frac{8(r_{\rm s}+r_{\rm m})^2}{\lambda-16r_s}$}. Otherwise, the scatterer size should be considered in the channel model. Under this scenario, when {\color{red}$d \leqslant \frac{8(r_{\rm s}+r_{\rm m})^2}{\lambda} $}, the scatterer and the antenna array are in the near-field region. When {\color{red}$d \geqslant \frac{8(r_{\rm s}+r_{\rm m})^2}{\lambda}$}, the scatterer and the antenna array are in the far-field region. 
-
-        {\bf Appendix B \\Proof of Lemma 2}
-
-		\setcounter{equation}{40}
-       \quad  We have 
-        \begin{equation}
-            \begin{aligned}
-        &~~~~\|{\bf d}+\boldsymbol{\rho}-{\bf r}\| \\&= \sqrt{d^2+\rho^2+r^2+2{\bf d}\cdot\boldsymbol{\rho}-2{\bf d}\cdot{\bf r}-2\boldsymbol{\rho}\cdot{\bf r}}
-        \\& = d \sqrt{1+\left( \frac{\rho}{d} \right)^2 + \left( \frac{r}{d} \right)^2+2\frac{{\bf d}\cdot{\bf \rho}}{d^2}-2\frac{{\bf d}\cdot{\bf r}}{d^2}-2\frac{\boldsymbol{\rho}\cdot{\bf r}}{d^2}}.
-        \end{aligned}
-        \end{equation}
-        According to the Taylor expansion $\sqrt{1+x} \approx 1+\frac{1}{2}x-\frac{1}{8}x^2 $ and the assumption that $d \gg {\rm max}(r,\rho)$, we have that 
-        \begin{equation}
-            \begin{aligned}
-        &~~~~\|{\bf d}+\boldsymbol{\rho}-{\bf r}\| \\&\approx d\Bigg( 1+ \frac{{\bf d}\cdot\boldsymbol{\rho}}{d^2}-\frac{{\bf d}\cdot{\bf r}}{d^2}+ \frac{\rho^2}{2d^2}  +\frac{r^2}{2d^2} -\frac{\boldsymbol{\rho}\cdot{\bf r}}{d^2} -\frac{({\bf d}\cdot\boldsymbol{\rho})^2}{2d^4} - \frac{({\bf d}\cdot{\bf r})^2}{2d^4} + \frac{({\bf d}\cdot\boldsymbol{\rho})({\bf d}\cdot{\bf r})}{d^4} \Bigg),
-        \end{aligned}
-        \end{equation}
-        where higher orders of $\frac{\rho}{d}$ and $\frac{r}{d}$ are neglected. For far-field channel modeling without considering the size of scatterers, only the terms $d\left( 1- \frac{{\bf d}\cdot{\bf r}}{d^2}  \right)$ is kept, which means that the rest terms should be small enough. If we adopt the $\frac{\pi}{8}$ phase error as the threshold, we have 
-        {\color{red}
-        \begin{equation}
-            \begin{aligned}
-        &\frac{2\pi}{\lambda} \Bigg| \frac{{\bf d}\cdot\boldsymbol{\rho}}{d} +\frac{\rho^2}{2d} + \frac{r^2}{2d} - \frac{\boldsymbol{\rho}\cdot{\bf r}}{d}- \frac{({\bf d}\cdot\boldsymbol{\rho})^2}{2d^3} - \frac{({\bf d}\cdot{\bf r})^2}{2d^3} + \frac{({\bf d}\cdot\boldsymbol{\rho})({\bf d}\cdot{\bf r})}{d^3} \Bigg|
-        \\& \leqslant \frac{2\pi}{\lambda} \left( r_{\rm s}+\frac{(r_{\rm s}+r_{\rm m})^2}{2d} \right) \leqslant \frac{\pi}{8},
-            \end{aligned}
-        \end{equation}
-        which leads to $(\lambda-16r_{\rm s})d \geqslant 8(r_{\rm s}+r_{\rm m})^2 $. Therefore, when the radius $r_{\rm s}$ of the scatterer is larger than $\frac{\lambda}{16}$ and $d\geqslant \frac{8(r_{\rm s}+r_{\rm m})^2}{\lambda-16r_s}$, the scatterer size has to be taken into consideration.} Moreover, if we keep the terms $d \left( 1+\frac{{\bf d}\cdot\boldsymbol{\rho}}{d^2} - \frac{{\bf d}\cdot{\bf r}}{d^2} \right)$, which means that the antenna array and the scatterer are in each other's far-field respectively, we have
-        {\color{red}
-        \begin{equation}
-            \begin{aligned}
-        &\frac{2\pi}{\lambda} \Bigg| \frac{\rho^2+r^2}{2d} - \frac{\boldsymbol{\rho}\cdot{\bf r}}{d}- \frac{({\bf d}\cdot\boldsymbol{\rho})^2}{2d^3} - \frac{({\bf d}\cdot{\bf r})^2}{2d^3} + \frac{({\bf d}\cdot\boldsymbol{\rho})({\bf d}\cdot{\bf r})}{2d^3} \Bigg|
-        \\& \leqslant \frac{2\pi}{\lambda} \left( \frac{(r_{\rm s}+r_{\rm m})^2}{d} \right) \leqslant \frac{\pi}{8},
-            \end{aligned}
-        \end{equation}
-        which leads to $d\geqslant \frac{8(r_{\rm s}+r_{\rm m})^2}{\lambda}$. 
-     }
+    {\it B. Notation}
+    
+    \quad Bold uppercase characters {\color{red}${\bf H}$} denote matrices;
+    bold lowercase characters {\color{red}${\bf k}$} denote vectors, {\color{red} $\left\| {\bf k} \right\|$ denotes the norm of the vector, and $\hat{\bf k}$ denote the direction of the vector};
+    the dot $\cdot$ denotes the scalar product of two vectors, or the matrix-vector multiplication; {\color{red} ${\rm Tr(\cdot)}$ is the trace of a matrix, and ${\rm det}(\cdot)$ is the determinant of a matrix; $(\cdot)^{\rm T}$ is the transpose of a vector or a matrix, $(\cdot)^{\rm H}$ is the conjugate transpose of a vector or a matrix, and $(\cdot)^{*}$ is the conjugate of a number, a vector or a matrix; $|\cdot|$ is the absolute value of a number; $\nabla$ is the nabla operator, and $\nabla \times$ is the curl operator; $f(x)|_a^b$ is $f(b)-f(a)$;}
+    $c$ is the speed of light in a vacuum{\color{red}, $\epsilon_0$ is the permittivity of a vacuum, $\mu_0$ is the permeability of a vacuum, $\omega$ is the angular frequency, and ${\bf k}$ is the wavenumber vector; $\underset{x \in S}{\rm sup}f(x)$ is the supremum of $f(x)$ over $x\in S$, and $\underset{x \in S}{\rm inf}f(x)$ is the infimum of $f(x)$ over $x\in S$;} 
+    $\mathscr{F}[f(x)]$ denotes the Fourier transform of $f(x)$; 
+    $J_m(x)$ is the $m_{\rm th}$ order Bessel function of the first kind; 
+    The inner product of $f: \mathbb{R}^n \rightarrow \mathbb{C}$ and $f_i: \mathbb{R}^n \rightarrow \mathbb{C}$ on the domain $\mathcal{A}$ is denoted by $\langle f \ket{f_i}:= \int_{\mathcal{A}} f({\bf x}) f_i^*({\bf x}) {\rm d}^n{\bf x}$. The norm of $f$ is denoted by $\left\| f \right\|:=(\langle f \ket{f})^{1/2} $; {\color{red}$\mathbb{Z}^+$ refers to the set of all positive integers, and $\mathbb{R}^{n}$ refers to an 
+    	$n$-dimensional vector space over the real numbers}. 
 \end{framed}
 
 
 \textbf{Reviewer 2:}
-It is not clear how the authors obtained the model in Eq. 6. and how the value of the alpha parameter was obtained. The model in Eq, 6 appears to be a heuristic formula. Authors are encouraged to describe the derivation if the model is derived from physics. If it is a heuristic model, it would be useful to declare it in the paper.
+5. Although the authors introduce constraints in space and wavenumber domains,  it requires the product of those domains to tend to infinity to achieve the maximum DoF. The review understands that deriving the non-asymptotic DoF is difficult. But isn’t that the non-asymptotic case can be analyzed using the mutual information as in the authors’ previous works, e.g., [19]?
 
 {\color{blue}{\textbf{Authors: } 
-Thanks for the reviewer's constructive comment. This model is heuristic. The parameter $a$ is introduced to make the model more general compared to single-point model, circle surface model and ring model of scatterers. By changing $a$, the shape of the scatterer can fit the above ones and also take their intermediate form. We add the declaration of this assumption in the paper, shown as follows: 
+Thanks for the reviewer's constructive comment. We have some theoretical derivations about the non-asymptotic case in the paper, which lead to the integral equations whose solutions (eigenvalues) determine the DoF (The kernel functions of the integral equations are represented as $D({\bf x},{\bf x}')$ in the paper). However, it is very difficult to provide analytical solutions for these equations. So finally we choose numerical schemes to show some results of the DoF of electromagnetic fields. We appreciate the reviewers for reading our previous paper which analyzes the mutual information under non-asymptotic cases. In that paper we have provided analytical expressions under some special cases (stationary random field with rational spectrum). However, for general cases we still use the Fredholm determinant and rely on numerical calculation schemes.
+
+To better explain this problem and strengthen the theoretical part of the paper according to the reviewer's suggestions, we have revised the paper from the following perspectives:
+
+1. We have added a new subsection as {\bf Section III.A} which clarifies the existing works on Slepian concentration problem, which shows the difficulties of providing analytical solutions when analyzing the scenario in spaces with dimension higher than 1.
+
+2. We have added some qualitative and quantitative analysis about the solutions of the derived integral equations in {\bf Section III.C}, which provides some theoretical insights about the DoF in non-asymptotic cases.
+
+3. We have added a comment about the relationship between asymptotic DoF and non-asymptotic DoF.
+
+The detailed revisions are shown in the following box
+
 }}
 
 \begin{framed}
-	{\bf Section III. A}
+	{\bf Section III}
+	
+	{\bf {\color{red} A. A brief introduction of the existing works on Slepian concentration problem}}
 
-    Specifically, we model it by 
-	\begin{equation}
-		f({\bf r}') = (k^2({\bf r}')-k_0^2)^2  =\left\{\begin{matrix}
-		\frac{a+1}{\pi r_s^{2a+2}} (r_s^2-\rho^2)^{a}	&\left| \rho \right|\leqslant r_s, \\ 
-		0	& {\rm otherwise},
-		\end{matrix}\right.
-		\tag{10}
-	\end{equation}
-where $\boldsymbol{\rho} = {\bf r}' - {\bf d}$, $\rho = \|\boldsymbol{\rho}\|$, and $a$ is a parameter characterizing the concentration of scatterer around the central point. {\color{red} This assumption for $f({\bf r}')$ is heuristic, which aims at providing a general model to cover different shapes of scatterers. By changing the parameter $a$, the scatterer varies from ring to single point.
-For example, when $a = 0$, the scattering region is a uniform circular surface used in [36]. When $a \rightarrow -1$, the scatterer approximates a ring as in [37]. When $a \rightarrow +\infty$, the scattering region shrinks to a single point, which is widely adopted in existing works for near-field [38].}
+   	{\color{red}
+   	\quad The original work, accomplished by Slepian, analyzed the one-dimensional time-frequency concentration problem which has analytical solutions for the eigenvalues and eigenfunctions [30]. Based on these analytical solutions, the number of large eigenvalues and the behavior of the decay rate of small eigenvalues can be directly analyzed. The results about the one-dimensional Slepian concentration problem serve as powerful tools, which have been widely adopted in many areas, including spectrum estimation [31], capacity analysis [32], numerical integration [33], uncertainty relations [34], etc.
+   	
+   	\quad Slepian has also discussed the possible extension of the concentration problem to high dimensions with sphere-shaped concentration region [35], but provided no analytical solutions for the eigenvalues. Many researchers have followed his work, analyzing the Slepian concentration problem with different domain representations and concentration regions. Due to the high complexity of the high-dimensional structures, even for highly symmetric models, the existing works still focus on numerical calculation schemes instead of finding analytical solutions for the eigenvalue and eigenfunction solutions. 
+   	
+   	\quad For the domain representation, one approach is constraining one domain on a sphere and the other domain using degrees and orders of spherical harmonic functions. An early work considering both asymptotic results and numerical calculations in non-asymptotic scenarios has been discussed in [36]. Further works added colatitude–longitude spatial region constraints on the sphere and provided numerical calculation schemes for the eigen-problem [37]. Since our DoF analysis is with the physical constraints in space-wavenumber domains, the constraints based on spherical harmonic functions do not well fit our needs. 
+   	
+   	\quad Another approach is directly considering two domains that are the Fourier transform or the inverse Fourier transform of each other. By directly performing sampling on the constraint regions, [38] considered the two-dimensional Slepian concentration problem with a disc-shaped constraint region in one domain and a rectangle-shaped region in the other domain. In a similar form, [39] considered disc-shaped constraint regions in both two domains. 
+   	The fast-converging numerical calculation scheme for evaluating the two-dimensional Slepian concentration problem was analyzed in [40], which considered disc-shaped constraints in two domains that are Fourier transform or inverse Fourier transform of each other. 
+   	Its further extension to higher dimensional balls was shown in [41], which also considered numerical schemes and had no analytical solutions. Moreover, these two papers considered an ideal case when the concentration regions in the two domains are both $n$-dimensional balls, while our concentration region in the space domain may not always have spherical symmetry. 
+   	
+   	\quad Compared to these existing mathematical works, in this paper, we will formulate the Slepian concentration problem in the three-dimensional space-wavenumber domain and the four-dimensional domain which also includes time-frequency. We will obtain the concentration region in the wavenumber domain based on physical constraints like the dispersion relation. Compared to spherical regions, we mainly focus on a cuboid-shaped spatial concentration region that fits transceivers in reality better, which will break the spherical symmetry and make performing theoretical analysis even harder.  
+   	
+   	\quad In all, we can find that providing analytical solutions for the eigenvalues and eigenfunctions when considering the Slepian concentration problem in high dimensions is very difficult. Therefore, obtaining numerical solutions after deriving the integral equations, which is not the best but is a practically feasible route, is chosen in our paper. Besides numerical simulations, we also provide some quantitative and qualitative analyses and discussions of the properties of the eigenvalues based on the derived kernel functions, which will be shown in the following parts.
+   }
+   
+   {\bf C. Slepian concentration problem in three-dimensional space-wavenumber domain for electromagnetic field}
+   
+   {\color{red}
+   
+   \quad From {\bf Remark} 5 we have shown how the eigenvalues of the Slepian concentration problem influence the fDoF of the electromagnetic field. Now we will have some discussions about the properties of the eigenvalues, including the decay rate, the possible large values, and their relationship with the varying speed of the eigenfunctions, etc. These properties can also be observed in the numerical simulation part. 
+   
+   \quad We now focus on the kernel functions $D_1({\bf x},{\bf x}')=\frac{1}{2\pi^2} \left( \frac{\sin k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^3}-\frac{k_0\cos k_0\left\| {\bf x}-{\bf x}' \right\|}{\left\| {\bf x}-{\bf x}' \right\|^2} \right)$ in (30) and $D_2({\bf x},{\bf x}') = \frac{1}{2\pi^2} \frac{k_0\sin k_0 \left\| {\bf x}-{\bf x}' \right\|}{\left\|  {\bf x}-{\bf x}' \right\|}$ in (42), as they represent two extreme cases with full band $(0,\omega_0]$ and single-frequency point $\omega_0$. First of all, we will discuss the decay rate of the eigenvalues of the integral operators with these two kernels. In [44], the eigenvalues obey the rule $\lambda_n  = o(n^{-k-1})$, where $k$ is the order of differentiability of the kernel function of the integral operator. Therefore, determining the differentiability (smoothness) helps to predict the long-term behavior of the eigenvalues.
+   It is easy to observe that $D_1({\bf x},{\bf x}')$ and $D_2({\bf x},{\bf x}')$ are real analytic if we do not consider the point ${\bf x} = {\bf x}'$. Now we will examine if they are real analytic at ${\bf x} = {\bf x}'$. 
+   Note that $D_1({\bf x},{\bf x}')$ and $D_2({\bf x},{\bf x}')$ are determined by $\left\|{\bf x}-{\bf x}'\right\|$. We only need to check the radial functions $E_1(r) = \frac{1}{2\pi^2} \left( \frac{\sin k_0 r}{r^3} - \frac{k_0 \cos k_0 r}{r^2} \right)$ and $E_2(r) = \frac{1}{2 \pi^2} \frac{k_0 \sin k_0 r}{r}$ at the origin $r = 0$. Utilizing Taylor's expansion, we have 
+   \begin{equation}\begin{aligned}\sin(k_0r)&=k_0r-\frac{(k_0r)^3}{6}+\frac{(k_0r)^5}{120}+O(r^7),\\\cos(k_0r)&=1-\frac{(k_0r)^2}{2}+\frac{(k_0r)^4}{24}+O(r^6),\end{aligned}\end{equation}
+   which means that the Taylor expansions of $E_1(r)$ and $E_2(r)$ only contain even powers of $r$ and ensures the real analyticity of $D_1$ and $D_2$. Then we know that these two kernels are smooth or infinitely differentiable. From {\bf Theorem 5} in [45], it was shown that the eigenvalues $\{\lambda_n\}$ of a smooth radial kernel defined in a $d$-dimensional space can be upper-bounded by $\lambda_n \leqslant C' e^{-C n^{1/d}}$ where $C$ and $C'$ are constants related to the kernel. Therefore, we can conclude that the eigenvalues of the integral operators with kernel $D_1$ and $D_2$ will decay to 0 with sub-exponential speed.   
+   
+   \quad Moreover, when checking the Fourier transforms of the kernel functions $D_1$ and $D_2$, it is easy to observe from their derivation procedure that $D_1$ has a broader basis on $k \in (0,k_0]$ while $D_2$ only on a single point. Then from a qualitative perspective, we know that $D_1$ and $D_2$ have the same spherical symmetry in the wavenumber domain. Their difference exists in the radius dimension. To be more specific,
+   $D_1$ excites all possible modes that are below the frequency limit $w_0$, which tends to result in a series of similar large eigenvalues. On the contrary, $D_2$ only excites one mode at the frequency point $w_0$, which tends to result in one or only a few large eigenvalues. 
+   
+   \quad It is also worth noting that the integral operators mentioned above can be viewed as low-pass filters since they tend to keep the slow-varying components due to the smoothness of the kernels. Therefore, it is expected that when solving the concentration problem, the eigenfunctions that more slowly on the space domain will correspond to larger eigenvalues. According to {\bf Remark} 5, these eigenfunctions serve as good electromagnetic bases since they are more important when constructing required transmitted fields compared to other eigenfunctions, which will be verified in the simulation parts.
+   }
+   
+   {
+   \color{red}
+   \setcounter{remark}{5} 
+   \begin{remark}
+   	
+   	(relationship between asymptotic and non-asymptotic DoF) In the above parts, we have discussed the models and schemes to analyze and solve the concentration problem for non-asymptotic DoF. Although it is hard to quantitatively discuss the exact value of non-asymptotic DoF, which relies on numerical calculations and the error bound $\epsilon$ as in {\bf Definition} 1, here we propose a conjecture whose generality remains unproven. More precisely, the non-asymptotic DoF with small $\epsilon$, although being obviously smaller than the asymptotic case that involves larger spatial and wavenumber constraint regions, will exceed the asymptotic case when both of them are averaged over the sizes of the spatial and wavenumber constraint regions. The reason is that observations confined to a finite region inherently exploit the structural characteristics of the field, which effectively convey partial information from outside the region. One observation of this phenomenon in the one-dimensional time-frequency case has been shown in Fig. 2, in which the dotted line (Cut-off transition) refers to the average DoF of asymptotic case. It can be observed that for finite $\Omega T$, the line has a tail at the right side of the Cut-off transition line, which is more obvious for smaller $\Omega T$. This tail means extra DoF above the average DoF when considering a small $\epsilon$. For the three-dimensional scenario in the space-wavenumber domain we also provide a numerical case in Fig. 3, which comes from the integral equation with kernel function (30). It can be observed that the same phenomenon also exists in the three-dimensional scenario, when considering average DoF over the sizes of the spatial and wavenumber constraint regions, the non-asymptotic case will exceed the asymptotic case. We have also found a similar phenomenon when considering mutual information with a finite observation window in the time domain [46].
+   	
+   	
+   \end{remark}
+   }
 \end{framed}
 
+{\color{blue}
+	{\bf References:}
+	
+	[30] D. Slepian and H. O. Pollak, “Prolate spheroidal wave functions, Fourier analysis and uncertainty—I,” {\it Bell System Technical
+	Journal}, vol. 40, no. 1, pp. 43–63, Jan. 1961.
+	
+	[31] D. J. Thomson, “Spectrum estimation and harmonic analysis,” {\it Proc. IEEE}, vol. 70, no. 9, pp. 1055–1096, 2005.
+	
+	[32] T. M. Cover, Elements of information theory. John Wiley \& Sons, 1999.
+	
+	[33] H. Xiao, V. Rokhlin, and N. Yarvin, “Prolate spheroidalwavefunctions, quadrature and interpolation,” {\it Inverse problems}, vol. 17,
+	no. 4, p. 805, 2001.
+	
+	[34] F. Furrer, M. Berta, M. Tomamichel, V. B. Scholz, and M. Christandl, “Position-momentum uncertainty relations in the presence
+	of quantum memory,” {\it Journal of Mathematical Physics}, vol. 55, no. 12, 2014.
+	
+	[35] D. Slepian, “Prolate spheroidal wave functions, Fourier analysis and uncertainty—IV: extensions to many dimensions; generalized
+	prolate spheroidal functions,” {\it Bell System Technical Journal}, vol. 43, no. 6, pp. 3009–3057, 1964.
+	
+	[36] F. J. Simons, F. Dahlen, and M. A. Wieczorek, “Spatiospectral concentration on a sphere,” {\it SIAM review}, vol. 48, no. 3, pp. 504–536,
+	2006.
+	
+	[37] A. P. Bates, Z. Khalid, and R. A. Kennedy, “Slepian spatial-spectral concentration problem on the sphere: Analytical formulation
+	for limited colatitude–longitude spatial region,” {\it IEEE Trans. Signal Process.}, vol. 65, no. 6, pp. 1527–1537, Mar. 2017.
+	
+	[38] G. Beylkin, C. Kurcz, and L. Monz´on, “Grids and transforms for band-limited functions in a disk,” {\it Inverse Problems}, vol. 23,
+	no. 5, p. 2059, 2007.
+	
+	[39] F. J. Simons and D. V. Wang, “Spatiospectral concentration in the Cartesian plane,” {\it GEM-International Journal on Geomathematics},
+	vol. 2, no. 1, pp. 1–36, 2011.
+	
+	[40] Y. Shkolnisky, “Prolate spheroidal wave functions on a disc—integration and approximation of two-dimensional bandlimited
+	functions,” {\it Applied and Computational Harmonic Analysis}, vol. 22, no. 2, pp. 235–256, 2007.
+	
+	[41] J. Zhang, H. Li, L.-L. Wang, and Z. Zhang, “Ball prolate spheroidal wave functions in arbitrary dimensions,” {\it Applied and
+	Computational Harmonic Analysis}, vol. 48, no. 2, pp. 539–569, 2020.
+	
+	[44] J. Reade, “Eigen-values of Lipschitz kernels,” in Mathematical Proceedings of the Cambridge Philosophical Society, vol. 93, no. 1.
+	{\it Cambridge University Press}, 1983, pp. 135–140.
+	
+	
+	[45] M. Belkin, “Approximation beats concentration? An approximation view on inference with smooth radial kernels,” {\it in Conference
+	On Learning Theory. PMLR}, 2018, pp. 1348–1361.
+	
+	[46] J. Zhu, Z. Zhang, Z. Wan, and L. Dai, “On finite-time mutual information,” {\it in Proc. 2022 IEEE International Symposium on
+	Information Theory (ISIT)}, 2022, pp. 2910–2915.
+}
+
 \textbf{Reviewer 2:}
-The next part appears correct and is described with sufficient detail.
-In short, the work starts from rigorous physical considerations, which do not seem to be applied in the work. The results of the work were based on Eqs. (5) and (6), in which the physics of the problem is at least partially lost.
-
-These observations are not intended to reduce the validity of the work. In reality, Eqs. (5) and (6) nevertheless represent a good heuristic basis for solving the problem, and the results appear interesting. However, there remains a significant disconnect between the rigorous physical approach of the initial part of the work and the formulas that are then applied.
-
-The authors are invited to add comments on the 'physical' implications of the Eq. 5 and Eq. 6  approximation and carefully check the mathematical part before Eq. 5.
-
-Since what is important is Eq. (4), a possible way could be to discuss Part II without reporting the formulas that are not used in the remaining part of the paper and must be carefully checked, reducing in some way the emphasis on a rigorous physical approach, which the authors could develop in subsequent works.
+6. On p8, “When n → $\infty$, F2(k) → $\delta$(k - k0)”,  the Dirac delta function is not well-defined. Does using a different representation for the delta function for F2(k) change the DoF?
 
 
 {\color{blue}{\textbf{Authors: } 
-Thanks for your valuable comments and positive attitudes towards our work. We deeply agree with the reviewer's suggestion to clarify the approximations and physical implications of the equations in the paper. We have added explanations about these equations, as shown in the above answers to the reviewer's comments. We also add an extra remark summarizing the assumptions and simplifications used in the paper, which is shown as follows:
+Thanks for the reviewer's valuable comment. We have added more rigorous definitions about explanations about the delta function. We have also added explanations about why the DoF will not be changed when choosing a different representation for the delta function, which is guaranteed by the properties of the approximate identities [43].
+
+
+The detailed revisions are shown as follows:
 }}
 
 \begin{framed}
-	{\bf Section III. A}
+	{\bf Section III. C}
 
-    {\color{red}
-    {\bf Remark 1}
-    \quad In this paper before we arrive at {\bf Lemma 1}, several assumptions and simplifications are provided to reduce the analysis complexity and facilitate the derivation of an analytical result. These assumptions and simplifications include that 1) spatially uncorrelated scattered field adopted in [31], [32] and [33], which implies an ideal but mathematically friendly assumption that the material properties are varying instantaneously in the spatial domain; 2) scattering region and gain function both for analysis convenience and generality, which covers different scatterer shapes like circle surface [36], ring [37], and single point [38]; 3) distance is far larger than dimension of the scatterer; 4) distance is far larger than wavelength [28]; 5) scalar electromagnetic fields as in [22]. By changing these assumptions or discarding these simplifications, more accurate and general model may be obtained. 
-    }
+The eigenvalues comes from the following integral equation
+\begin{equation}
+	\lambda_i f_i({\bf x}) = \int_{\mathcal{R}}D({\bf x},{\bf x}')f_i({\bf x}'){\rm d}^3{\bf x}'.
+	\label{eigenfunction_3d}
+\end{equation}
+Here we set $\{F_{2,n}(k)\}_{n=1}^{+\infty} = \frac{1}{2h}\left( 1-\frac{|k-k_0|}{2h} \right), |k-k_0|\leqslant 2h$, $h = \frac{1}{2^n}$ to be a set of functions that make $F({\bf k})$ focus on a sphere surface in the wavenumber domain. When $n \rightarrow \infty$, $F_2(k) \rightarrow \delta(k-k_0)$. {\color{red} In a more rigorous description, we have $\underset{n \rightarrow +\infty}{\rm lim}{\int_{\mathbb{R}} F_2(k)f(k) } = f(k_0)$ for arbitrary smooth and compactly supported function $f(k) \in C_c^{\infty}({\mathbb R})$. It is worth noting that we use the function series $\{F_{2,n}(k)\}_{n=1}^{+\infty}$ due to two reasons. Firstly, we can establish the connection between the case where the support in the wavenumber domain has a continuous extent in $k$ (finite n), and the case localized only at the point $k_0$ ($n \rightarrow \infty$). Secondly, we can avoid directly using delta functions since they are not genuine functions but generalized functions, which possess some properties that can not be achieved by real-valued functions. Using a series of well-defined integrable functions, known as approximate identities, to approach the delta function is a common way used in existing literature [42]. From the above discussions, we can also observe that the functions $\{F_{2,n}(k)\}_{n=1}^{+\infty}$ can not be arbitrarily chosen. They should satisfy the power constraint $\int F_2(k) {\rm d}k = 1$ and describe a unit point mass at $k = k_0$ when $n \rightarrow \infty$ (or can be equivalently described as "support set shrinks to 0 when $n \rightarrow \infty$")
+	from the limitation perspective
+	[43]. 
+	Then they all have the property $\underset{n \rightarrow +\infty}{\rm lim}{\int_{\mathbb{R}} F_2(k)f(k) } = f(k_0)$. There are infinite choices for such function series, but they have the same limitation as the delta function [43] and will lead to the same DoF.} 
 \end{framed}
  
+ {\color{blue}
+ 	{\bf References:}
+ 	
+ 	[42] R. S. Strichartz, A guide to distribution theory and Fourier transforms. World Scientific Publishing Company, 2003.
+ 	
+ 	[43] N. Wheeler, “Simplified production of Dirac delta function identities,” {\it Reed College}, 1997.
+ }
+ 
+ \textbf{Reviewer 2:}
+7. What is the reason for introducing an approximation error $\epsilon$ in the definition of both functional and channel DoFs? For example, in the MIMO channel, the DoF is deterministic without any error terms. But why do the DoFs here have an error term?
+
+ 
+ 
+ {\color{blue}{\textbf{Authors: } 
+ Thanks for the reviewer's valuable question. The reason for introducing an approximation error $\epsilon$ is that we are considering continuous electromagnetic fields instead of discrete signals. In traditional discrete models we are using  discrete matrices which have finite ranks. However, for continuous electromagnetic fields, we are tackling Hilbert spaces with infinite dimensions. Now there is a contradiction between the theoretical model and practical schemes. In practical communication tasks, using an infinite number of base functions, which corresponds to infinite electromagnetic modes, is impossible and often unnecessary. The reason is that only a few base functions contribute a lot to the field reconstruction, while the remained base functions can be discarded with small loss of precision. The above observation motivates us to use the error $\epsilon$ to filter out unnecessary basis and obtain the number of basis we need, which is the DoF defined in the paper.
+ 		
+ 		
+ According to the reviewer's comment, we have added more explanations about the reason for introducing $\epsilon$. The detailed revisions are shown as follows:
+ }}
+ 
+ \begin{framed}
+ 	{\bf Section II.B}
+ 	
+ 	{\color{red}
+ 	\quad As is shown in (\ref{eqn_dispersion_relation}), there are some physical restrictions that the electromagnetic fields should obey in wireless communication systems. These restrictions relate to time, frequency, space, and wavenumber domain. All possible electromagnetic fields considering these restrictions span a Hilbert space whose dimension is the number of basis needed to express an arbitrary field in the space. 
+ 	
+ 	\quad Note that, unlike a discrete matrix, the dimension of a continuous Hilbert space may be infinite. However, in practical communication tasks, using an infinite number of base functions, which corresponds to infinite electromagnetic modes, is impossible and often unnecessary. The reason is that only a few base functions contribute a lot to the field reconstruction, while the remained base functions can be discarded with small loss of precision. We will give a mathematical definition of the DoF based on the above discussion and verify its rationale in the following sections of the paper. 
+ 	}
+ 	\end{framed}
 
 {\color{blue}{\textbf{Authors: } 
 Many thanks again for your valuable time and efforts to review this paper. 
